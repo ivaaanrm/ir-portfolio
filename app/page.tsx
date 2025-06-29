@@ -4,58 +4,46 @@ import { socialLinks } from "./lib/config";
 export default function Page() {
   return (
     <section>
-      <a href={socialLinks.twitter} target="_blank">
+      <a href={socialLinks.github} target="_blank">
         <Image
-          src="/profile.png"
-          alt="Profile photo"
-          className="rounded-full bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale hover:grayscale-0"
+          src="/perfil.jpg"
+          alt="Ivan Romero profile photo"
+          className="rounded-full bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5"
           unoptimized
           width={160}
           height={160}
           priority
         />
       </a>
-      <h1 className="mb-8 text-2xl font-medium">Portfolio template!</h1>
+      <h1 className="mb-8 text-2xl font-medium">Hello,</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          A clean, fast, and lightweight portfolio template built with Next.js,
-          Vercel, and Tailwind CSS.
+          I'm a Software Engineer with over 3 years of experience in backend
+          development, machine learning, and distributed systems. I'm passionate
+          about building end-to-end applications and enjoy working on projects in
+          tech environments.
         </p>
         <p>
-          Nextfolio has everything you need for a portfolio: MDX blog, SEO, RSS,
-          Atom & JSON feeds, analytics, Tweet & YouTube embeds, KaTeX and {""}
-          <a
-            target="_blank"
-            href="https://github.com/1msirius/Nextfolio?tab=readme-ov-file#features"
-          >
-            more
-          </a>
-          .
+          I have a strong foundation in Python, Django, relational databases, and
+          production deployments. I am currently completing a Master's degree in
+          Advanced Telecommunications Technologies, specializing in Deep
+          Learning for Multimedia Processing. I'm always eager to tackle the
+          next challenge and learn new technologies.
         </p>
         <p>
-          Nextfolio is{" "}
+          You can find more about my work on{" "}
+          <a href={socialLinks.linkedin} target="_blank">
+            LinkedIn
+          </a>{" "}
+          or see my projects on{" "}
           <a href={socialLinks.github} target="_blank">
-            open-source
-          </a>{" "}
-          and fully customizable, making it easy to add more features.
-        </p>
-        <p>
-          <a
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio"
-            target="_blank"
-          >
-            Deploy
-          </a>{" "}
-          your Nextfolio site with Vercel in minutes and follow the set up
-          instructions in the{" "}
-          <a href="/blog/getting-started">Getting Started</a> post.
-        </p>
-        <p>
-          Built and maintained by{" "}
-          <a href="https://imsirius.xyz/" target="_blank">
-            Sirius
+            GitHub
           </a>
           .
+        </p>
+        <p>
+          Outside of technology, my hobbies include photography, traveling, and
+          mountaineering.
         </p>
       </div>
     </section>

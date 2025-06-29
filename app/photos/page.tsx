@@ -15,14 +15,13 @@ export default function Photos() {
         columns={3}
         images={[
           {
-            src: "/photos/photo1.jpg",
-            alt: "Roman columns",
-            href: "https://unsplash.com/photos/people-walking-near-building-during-daytime-dFLBDQQeffU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+            src: "/photos/DSC_0482.png",
+            alt: "Oamn",
           },
           {
-            src: "/photos/photo2.jpg",
-            alt: "Big Ben",
-            href: "https://unsplash.com/photos/big-ben-london-MdJq0zFUwrw?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+            src: "/photos/namib1.jpg",
+            alt: "Namib Desert",
+            href: "",
           },
           {
             src: "/photos/photo3.jpg",
