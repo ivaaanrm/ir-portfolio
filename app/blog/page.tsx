@@ -3,8 +3,8 @@ import Image from "next/image";
 import { formatDate, getBlogPosts } from "app/lib/posts";
 
 export const metadata = {
-  title: "Blog",
-  description: "Nextfolio Blog",
+  title: "My Adventures",
+  description: "Travel adventures and experiences by Ivan Romero",
 };
 
 export default function BlogPosts() {
@@ -12,7 +12,7 @@ export default function BlogPosts() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium">Blog</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Adventures</h1>
       <div className="space-y-6">
         {allBlogs
           .sort((a, b) => {

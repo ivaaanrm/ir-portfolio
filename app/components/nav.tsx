@@ -3,8 +3,8 @@ import { ThemeSwitch } from "./theme-switch";
 import { metaData } from "../lib/config";
 
 const navItems = {
+  "/experience": { name: "Experience" },
   "/blog": { name: "Blog" },
-  "/projects": { name: "My Work" },
   "/photos": { name: "Photos" },
 };
 
