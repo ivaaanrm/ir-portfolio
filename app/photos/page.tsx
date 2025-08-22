@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import { ImageGrid } from "app/components/image-grid";
 
 export const metadata: Metadata = {
-  title: "Photos",
-  description: "My Photos",
+  title: "Photography",
+  description: "Photography collection by Ivan Romero",
 };
 
 export default function Photos() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium">Photos</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Photography</h1>
       <ImageGrid
         columns={3}
         images={[

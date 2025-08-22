@@ -25,7 +25,8 @@ export default function Page() {
         {/* Hero Content */}
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Hello, I'm Ivan Romero
+            Hello,<br />
+            I'm Ivan Romero
           </h1>
           <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
             Software Engineer & Machine Learning Enthusiast
@@ -54,7 +55,7 @@ export default function Page() {
               Download CV
             </a>
             <Link
-              href="/projects"
+              href="/experience"
               className="inline-flex items-center px-4 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200 text-sm"
             >
               <svg

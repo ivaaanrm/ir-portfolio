@@ -1,24 +1,60 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
 import { projects } from "./project-data";
 
-export const metadata: Metadata = {
-  title: "My Work",
-  description: "A selection of work experience and personal projects by Ivan Romero.",
-};
-
 export default function Projects() {
-  // Separate work experience and personal projects
+  // Separate work experience, personal projects and education
   const workExperience = projects.filter(project => project.type === 'work');
   const personalProjects = projects.filter(project => project.type === 'personal');
+  const education = projects.filter(project => project.type === 'education');
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="max-w-4xl mx-auto">
-      <h1 className="mb-8 text-2xl font-medium">My Work</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio & Experience</h1>
+      
+      {/* Navigation Buttons */}
+      <div className="flex justify-center flex-wrap gap-2 mb-12">
+        <button
+          onClick={() => scrollToSection('work-experience')}
+          className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg text-xs"
+        >
+          <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+          </svg>
+          Work Experience
+        </button>
+        <button
+          onClick={() => scrollToSection('personal-projects')}
+          className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg text-xs"
+        >
+          <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          Personal Projects
+        </button>
+        <button
+          onClick={() => scrollToSection('education')}
+          className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg text-xs"
+        >
+          <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+          Education
+        </button>
+      </div>
       
       {/* Work Experience Section */}
-      <div className="mb-12">
+      <div id="work-experience" className="mb-12">
         <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
           Work Experience
         </h2>
@@ -59,11 +95,48 @@ export default function Projects() {
                     )}
                     
                     <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                      {project.description.split('\n').map((line, lineIndex) => (
-                        <p key={lineIndex} className="mb-1">
-                          {line}
-                        </p>
-                      ))}
+                      {project.description.split('\n\n').map((section, sectionIndex) => {
+                        const lines = section.split('\n');
+                        const isRoleHeader = lines[0].includes('(') && lines[0].includes(')');
+                        
+                        if (isRoleHeader) {
+                          const roleInfo = lines[0];
+                          const bulletPoints = lines.slice(1);
+                          
+                          return (
+                            <div key={sectionIndex} className="mb-4 last:mb-0">
+                              {/* Role Header with Timeline */}
+                              <div className="flex items-center mb-2">
+                                <div className="w-3 h-3 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div>
+                                <div className="flex-1">
+                                  <h3 className="font-semibold text-blue-600 dark:text-blue-400">
+                                    {roleInfo.split(' (')[0]}
+                                  </h3>
+                                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                                    {roleInfo.match(/\((.*?)\)/)?.[1]}
+                                  </p>
+                                </div>
+                              </div>
+                              
+                              {/* Bullet Points */}
+                              <div className="ml-6">
+                                {bulletPoints.map((point, pointIndex) => (
+                                  <p key={pointIndex} className="mb-1 pl-2 border-l-2 border-neutral-200 dark:border-neutral-700">
+                                    {point}
+                                  </p>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        } else {
+                          // Regular paragraph (fallback)
+                          return (
+                            <p key={sectionIndex} className="mb-1">
+                              {section}
+                            </p>
+                          );
+                        }
+                      })}
                     </div>
                     
                     {/* Tags */}
@@ -111,7 +184,7 @@ export default function Projects() {
       </div>
 
       {/* Personal Projects Section */}
-      <div>
+      <div id="personal-projects" className="mb-12">
         <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
           Personal Projects
         </h2>
@@ -196,6 +269,99 @@ export default function Projects() {
                   {/* Enlace a GitHub */}
                   <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span>View Project</span>
+                    <svg
+                      className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Education Section */}
+      <div id="education">
+        <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
+          Education
+        </h2>
+        <div className="space-y-6">
+          {education.map((project, index) => (
+            <Link
+              key={index}
+              href={project.url}
+              className="group block transition-all duration-300 hover:scale-105"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <article className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-neutral-200 dark:border-neutral-700">
+                {/* Contenido de la tarjeta */}
+                <div className="p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-2">
+                      <h2 className="text-xl font-semibold text-black dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                        {project.title}
+                      </h2>
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                        {project.year}
+                      </span>
+                    </div>
+                    
+                    {/* University and Location */}
+                    {project.university && (
+                      <div className="mb-3">
+                        <p className="text-lg font-medium text-green-600 dark:text-green-400">
+                          {project.university}
+                          {project.location && (
+                            <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-2">
+                              • {project.location}
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                    )}
+                    
+                    <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+                      {project.description.split('\n').map((line, lineIndex) => (
+                        <p key={lineIndex} className="mb-1 pl-2 border-l-2 border-neutral-200 dark:border-neutral-700">
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                    
+                    {/* Tags */}
+                    {project.tags && (
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {project.tags.slice(0, 4).map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-2 py-1 rounded"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {project.tags.length > 4 && (
+                          <span className="text-xs text-neutral-500 dark:text-neutral-400 px-2 py-1">
+                            +{project.tags.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Enlace a la universidad */}
+                  <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                    <span>Visit University</span>
                     <svg
                       className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
                       fill="none"
