@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { socialLinks } from "./lib/config";
+import { TextLoopBasic } from "./components/text-loop";
+import { InView } from "./components/in-view";
 
 export default function Page() {
   return (
     <section className="max-w-4xl mx-auto">
       {/* Hero Section */}
-      <div className="flex flex-col lg:flex-row items-start gap-8 mb-12">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-12">
         {/* Profile Image */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 mx-auto lg:mx-0">
           <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
             <Image
               src="/perfil.jpg"
@@ -23,14 +25,14 @@ export default function Page() {
         </div>
 
         {/* Hero Content */}
-        <div className="flex-1">
+        <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Hola,<br />
             Soy Ivan Romero
           </h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
-            Ingeniero de Software & AI/ML Entusista
-          </p>
+          <div className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
+            <TextLoopBasic />
+          </div>
           
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-3 mb-6">
@@ -111,31 +113,49 @@ export default function Page() {
 
       {/* About Section */}
       <div className="prose prose-neutral dark:prose-invert max-w-none mb-12">
-        <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Sobre mí</h2>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">
-            I'm a Software Engineer with over 3 years of experience in backend
-            development, machine learning, and distributed systems. I'm passionate
-            about building end-to-end applications and enjoy working on projects in
-            tech environments.
-          </p>
-          <p className="text-lg leading-relaxed mb-4">
-            I have a strong foundation in Python, Django, relational databases, and
-            production deployments. I am currently completing a Master's degree in
-            Advanced Telecommunications Technologies, specializing in Deep
-            Learning for Multimedia Processing.
-          </p>
-          <p className="text-lg leading-relaxed mb-4">
-            I'm always eager to tackle the next challenge and learn new technologies.
-            My experience spans from developing scalable backend systems to implementing
-            cutting-edge machine learning solutions.
-          </p>
-          <p className="text-lg leading-relaxed">
-            Outside of technology, my hobbies include photography, traveling, and
-            mountaineering. These experiences help me bring a unique perspective
-            to problem-solving and creativity in my work.
-          </p>
-        </div>
+        <InView
+          variants={{
+            hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+            visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Sobre mí</h2>
+        </InView>
+        <InView
+          variants={{
+            hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+            visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.2 }}
+          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.1 }}
+        >
+          <div>
+            <p className="text-lg leading-relaxed mb-4">
+              I'm a Software Engineer with over 3 years of experience in backend
+              development, machine learning, and distributed systems. I'm passionate
+              about building end-to-end applications and enjoy working on projects in
+              tech environments.
+            </p>
+            <p className="text-lg leading-relaxed mb-4">
+              I have a strong foundation in Python, Django, relational databases, and
+              production deployments. I am currently completing a Master's degree in
+              Advanced Telecommunications Technologies, specializing in Deep
+              Learning for Multimedia Processing.
+            </p>
+            <p className="text-lg leading-relaxed mb-4">
+              I'm always eager to tackle the next challenge and learn new technologies.
+              My experience spans from developing scalable backend systems to implementing
+              cutting-edge machine learning solutions.
+            </p>
+            <p className="text-lg leading-relaxed">
+              Outside of technology, my hobbies include photography, traveling, and
+              mountaineering. These experiences help me bring a unique perspective
+              to problem-solving and creativity in my work.
+            </p>
+          </div>
+        </InView>
       </div>
 
       {/* Contact Section */}

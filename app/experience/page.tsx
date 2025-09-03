@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { projects } from "./project-data";
+import { InView } from "../components/in-view";
 
 export default function Projects() {
   // Separate work experience, personal projects and education
@@ -19,10 +20,27 @@ export default function Projects() {
 
   return (
     <section className="max-w-4xl mx-auto">
-      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio & Experience</h1>
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio & Experience</h1>
+      </InView>
       
       {/* Navigation Buttons */}
-      <div className="flex justify-center flex-wrap gap-2 mb-12">
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 50, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.4, ease: 'easeInOut', delay: 0.1 }}
+      >
+        <div className="flex justify-center flex-wrap gap-2 mb-12">
         <button
           onClick={() => scrollToSection('work-experience')}
           className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg text-xs"
@@ -51,16 +69,35 @@ export default function Projects() {
           </svg>
           Education
         </button>
-      </div>
+        </div>
+      </InView>
       
       {/* Work Experience Section */}
       <div id="work-experience" className="mb-12">
-        <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
-          Work Experience
-        </h2>
+        <InView
+          variants={{
+            hidden: { opacity: 0, x: -100, filter: 'blur(4px)' },
+            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
+            Work Experience
+          </h2>
+        </InView>
         <div className="space-y-6">
           {workExperience.map((project, index) => (
-            <article key={index} className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700">
+            <InView
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
+            >
+              <article className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700">
               {/* Contenido de la tarjeta */}
               <div className="p-6 flex flex-col justify-between">
                 <div>
@@ -176,18 +213,37 @@ export default function Projects() {
                 </Link>
               </div>
             </article>
+            </InView>
           ))}
         </div>
       </div>
 
       {/* Personal Projects Section */}
       <div id="personal-projects" className="mb-12">
-        <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
-          Personal Projects
-        </h2>
+        <InView
+          variants={{
+            hidden: { opacity: 0, x: -100, filter: 'blur(4px)' },
+            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
+            Personal Projects
+          </h2>
+        </InView>
         <div className="space-y-6">
           {personalProjects.map((project, index) => (
-            <article key={index} className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700 flex flex-col md:flex-row">
+            <InView
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
+            >
+              <article className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700 flex flex-col md:flex-row">
               {/* Imagen de portada */}
               <div className="relative w-full md:w-64 h-48 md:h-auto overflow-hidden flex-shrink-0">
                                  {project.image ? (
@@ -280,18 +336,37 @@ export default function Projects() {
                 </Link>
               </div>
             </article>
+            </InView>
           ))}
         </div>
       </div>
 
       {/* Education Section */}
       <div id="education">
-        <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
-          Education
-        </h2>
+        <InView
+          variants={{
+            hidden: { opacity: 0, x: -100, filter: 'blur(4px)' },
+            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <h2 className="text-xl font-semibold mb-6 text-black dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
+            Education
+          </h2>
+        </InView>
         <div className="space-y-6">
           {education.map((project, index) => (
-            <article key={index} className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700">
+            <InView
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
+            >
+              <article className="group bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 dark:border-neutral-700">
               {/* Contenido de la tarjeta */}
               <div className="p-6 flex flex-col justify-between">
                 <div>
@@ -370,6 +445,7 @@ export default function Projects() {
                 </Link>
               </div>
             </article>
+            </InView>
           ))}
         </div>
       </div>

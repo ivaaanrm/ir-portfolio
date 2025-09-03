@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { socialLinks } from "../lib/config";
+import { InView } from "../components/in-view";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -39,31 +40,57 @@ export default function ContactPage() {
   return (
     <section className="max-w-4xl mx-auto space-y-16">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Contact
-        </h1>
-        <p className="text-lg text-neutral-600 dark:text-neutral-400">
-          Let's work together
-        </p>
-      </div>
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Contact
+          </h1>
+          <p className="text-lg text-neutral-600 dark:text-neutral-400">
+            Let's work together
+          </p>
+        </div>
+      </InView>
 
       {/* Contact Section - Photo and Details */}
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         {/* Photo */}
-        <div className="relative">
-          <Image
-            src="/photos/namib-contact.jpg"
-            alt="Namib"
-            width={500}
-            height={400}
-            className="rounded-lg object-cover w-full h-80"
-            priority
-          />
-        </div>
+        <InView
+          variants={{
+            hidden: { opacity: 0, x: -100, filter: 'blur(4px)' },
+            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <div className="relative">
+            <Image
+              src="/photos/namib-contact.jpg"
+              alt="Namib"
+              width={500}
+              height={400}
+              className="rounded-lg object-cover w-full h-80"
+              priority
+            />
+          </div>
+        </InView>
 
         {/* Contact Details */}
-        <div className="space-y-8">
+        <InView
+          variants={{
+            hidden: { opacity: 0, x: 100, filter: 'blur(4px)' },
+            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
+          }}
+          viewOptions={{ amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.1 }}
+        >
+          <div className="space-y-8">
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
               Get in touch
@@ -119,21 +146,30 @@ export default function ContactPage() {
               </svg>
             </a>
           </div>
-        </div>
+          </div>
+        </InView>
       </div>
 
       {/* Contact Form Section */}
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
-            Send a message
-          </h2>
-          <p className="text-neutral-600 dark:text-neutral-400">
-            Have a project in mind? Let me know what you're thinking.
-          </p>
-        </div>
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.2 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      >
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
+              Send a message
+            </h2>
+            <p className="text-neutral-600 dark:text-neutral-400">
+              Have a project in mind? Let me know what you're thinking.
+            </p>
+          </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <input
@@ -206,8 +242,9 @@ export default function ContactPage() {
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
-        </form>
-      </div>
+          </form>
+        </div>
+      </InView>
     </section>
   );
 }
