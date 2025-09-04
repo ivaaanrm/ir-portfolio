@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Photos() {
   return (
     <section>
-      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Photography</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center text-black dark:text-white">Photography</h1>
       <ImageGrid
         columns={3}
         images={[

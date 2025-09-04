@@ -68,22 +68,17 @@ export function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 ${isScrolled ? "dark:bg-neutral-900/80" : "dark:bg-transparent"}`}
-        // Anima el cambio de fondo al hacer scroll
-        animate={{
-          backgroundColor: isScrolled
-            ? "rgba(255, 255, 255, 0.8)"
-            : "rgba(255, 255, 255, 0)",
-        }}
-        // La sintaxis para dark mode es un poco más compleja, se puede hacer con CSS variables.
-        // Pero para simplificar, lo manejamos con clases y el backdrop-filter.
+        className={`fixed top-0 left-0 right-0 z-50 ${
+          isScrolled 
+            ? "bg-white dark:bg-neutral-900 shadow-sm" 
+            : "bg-transparent"
+        }`}
         style={{
-          backdropFilter: isScrolled ? "blur(8px)" : "none",
-          WebkitBackdropFilter: isScrolled ? "blur(8px)" : "none",
+          transition: isScrolled ? 'none' : 'all 0.3s ease'
         }}
       >
         <div className="max-w-[624px] mx-auto px-6 sm:px-4 md:px-0">
-          <div className="flex items-center justify-between py-6">
+          <div className="flex items-center justify-between py-8">
             <Link href="/" className="text-2xl font-semibold leading-none">
               {metaData.title}
             </Link>

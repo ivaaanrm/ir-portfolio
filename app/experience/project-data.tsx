@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     title: "Software Engineer",
     year: "Jan 2023 - Aug 2025",
-    description: "Machine Learning Intern (Jan 2023 - Jul 2024)\n• Developed and implemented machine learning models for satellite imagery processing\n• Collaborated with research teams to optimize AI algorithms\n\nBackend Engineer (Jul 2024 - Aug 2025)\n• Led development of scalable backend systems and led a team of developers\n• Implemented production-ready solutions and mentored junior developers",
+    description: "Backend Engineer (Jul 2024 - Aug 2025)\n• Led development of scalable backend systems and led a team of developers\n• Implemented production-ready solutions and mentored junior developers\n\nMachine Learning Developer (Jan 2023 - Jul 2024)\n• Developed and implemented machine learning models for satellite imagery processing\n• Collaborated with research teams to optimize AI algorithms",
     url: "https://serimag.com",
     tags: ["Backend Development", "Machine Learning", "Python", "Team Leadership"],
     type: "work",

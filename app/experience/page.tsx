@@ -28,7 +28,7 @@ export default function Projects() {
         viewOptions={{ amount: 0.3 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio & Experience</h1>
+        <h1 className="mb-8 text-3xl font-bold text-center text-black dark:text-white">Portfolio & Experience</h1>
       </InView>
       
       {/* Navigation Buttons */}
@@ -117,7 +117,7 @@ export default function Projects() {
                         {project.company}
                         {project.location && (
                           <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-2">
-                            • {project.location}
+                            | {project.location}
                           </span>
                         )}
                       </p>
@@ -151,7 +151,7 @@ export default function Projects() {
                             {/* Bullet Points */}
                             <div className="bulletPoints">
                               {bulletPoints.map((point, pointIndex) => (
-                                <p key={pointIndex} className="mb-1 pl-2 border-l-2 border-neutral-200 dark:border-neutral-700">
+                                <p key={pointIndex} className="mb-1 pl-2 border-neutral-200 dark:border-neutral-700">
                                   {point}
                                 </p>
                               ))}

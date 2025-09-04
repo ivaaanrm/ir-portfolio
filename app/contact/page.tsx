@@ -40,7 +40,7 @@ export default function ContactPage() {
   return (
     <section className="max-w-4xl mx-auto space-y-16">
       {/* Header */}
-      <InView
+      {/* <InView
         variants={{
           hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
           visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -49,48 +49,22 @@ export default function ContactPage() {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">
             Contact
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400">
-            Let's work together
-          </p>
         </div>
-      </InView>
+      </InView> */}
 
-      {/* Contact Section - Photo and Details */}
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        {/* Photo */}
-        <InView
-          variants={{
-            hidden: { opacity: 0, x: -100, filter: 'blur(4px)' },
-            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
-          }}
-          viewOptions={{ amount: 0.3 }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
-        >
-          <div className="relative">
-            <Image
-              src="/photos/namib-contact.jpg"
-              alt="Namib"
-              width={500}
-              height={400}
-              className="rounded-lg object-cover w-full h-80"
-              priority
-            />
-          </div>
-        </InView>
-
-        {/* Contact Details */}
-        <InView
-          variants={{
-            hidden: { opacity: 0, x: 100, filter: 'blur(4px)' },
-            visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
-          }}
-          viewOptions={{ amount: 0.3 }}
-          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.1 }}
-        >
-          <div className="space-y-8">
+      {/* Contact Details */}
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      >
+        <div className="max-w-2xl mx-auto text-center space-y-8">
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
               Get in touch
@@ -101,7 +75,7 @@ export default function ContactPage() {
           </div>
 
           {/* Email */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center justify-center space-x-3">
             <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
@@ -114,7 +88,7 @@ export default function ContactPage() {
           </div>
 
           {/* Social Links */}
-          <div className="flex space-x-4">
+          <div className="flex justify-center space-x-4">
             <a
               href={socialLinks.linkedin}
               target="_blank"
@@ -146,9 +120,8 @@ export default function ContactPage() {
               </svg>
             </a>
           </div>
-          </div>
-        </InView>
-      </div>
+        </div>
+      </InView>
 
       {/* Contact Form Section */}
       <InView
@@ -157,7 +130,7 @@ export default function ContactPage() {
           visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
         }}
         viewOptions={{ amount: 0.2 }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
+        transition={{ duration: 2, ease: 'easeInOut' }}
       >
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
