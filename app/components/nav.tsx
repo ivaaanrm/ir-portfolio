@@ -83,8 +83,8 @@ export function Navbar() {
         }}
       >
         <div className="max-w-[624px] mx-auto px-6 sm:px-4 md:px-0">
-          <div className="flex items-center justify-between py-8">
-            <Link href="/" className="text-3xl font-semibold">
+          <div className="flex items-center justify-between py-6">
+            <Link href="/" className="text-2xl font-semibold leading-none">
               {metaData.title}
             </Link>
 
