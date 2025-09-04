@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { socialLinks } from "./lib/config";
-import { TextLoopBasic } from "./components/text-loop";
+import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
 
 export default function Page() {
@@ -31,11 +31,17 @@ export default function Page() {
             Soy Ivan Romero
           </h1>
           <div className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
-            <TextLoopBasic />
+            <TextScramble
+              className='font-mono text-xl'
+              duration={2}
+              // characterSet='. '
+            >
+              Software Engineer & Machine Learning Enthusiast
+            </TextScramble>
           </div>
           
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
             <a
               href="/cv-ivan-romero.pdf"
               download
@@ -78,7 +84,7 @@ export default function Page() {
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-4">
+          <div className="flex justify-center gap-4">
             <a
               href={socialLinks.linkedin}
               target="_blank"
