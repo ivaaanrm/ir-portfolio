@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate, getBlogPosts } from "app/lib/posts";
+import { InView } from "../components/in-view";
 
 export const metadata = {
   title: "My Adventures",
@@ -12,7 +13,16 @@ export default function BlogPosts() {
 
   return (
     <section>
-      <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Adventures</h1>
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Adventures</h1>
+      </InView>
       <div className="space-y-6">
         {allBlogs
           .sort((a, b) => {
@@ -24,13 +34,21 @@ export default function BlogPosts() {
             }
             return 1;
           })
-          .map((post) => (
-            <Link
+          .map((post, index) => (
+            <InView
               key={post.slug}
-              className="group block transition-all duration-300 hover:scale-105"
-              href={`/blog/${post.slug}`}
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
             >
-              <article className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-neutral-200 dark:border-neutral-700 flex flex-col md:flex-row">
+              <Link
+                className="group block transition-all duration-300 hover:scale-105"
+                href={`/blog/${post.slug}`}
+              >
+                <article className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-neutral-200 dark:border-neutral-700 flex flex-col md:flex-row">
                 {/* Imagen de portada */}
                 <div className="relative w-full md:w-64 h-48 md:h-auto overflow-hidden flex-shrink-0">
                   {post.metadata.image ? (
@@ -83,6 +101,7 @@ export default function BlogPosts() {
                 </div>
               </article>
             </Link>
+            </InView>
           ))}
       </div>
     </section>
