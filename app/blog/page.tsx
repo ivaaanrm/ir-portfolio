@@ -21,7 +21,7 @@ export default function BlogPosts() {
         viewOptions={{ amount: 0.3 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <h1 className="mb-8 text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Adventures</h1>
+        <h1 className="mb-8 text-3xl font-bold text-center text-black dark:text-white">My Adventures</h1>
       </InView>
       <div className="space-y-6">
         {allBlogs
