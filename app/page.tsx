@@ -14,7 +14,7 @@ export default function Page() {
           <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
             <Image
               src="/perfil.jpg"
-              alt="Ivan Romero profile photo"
+              alt="Roger Gonzalez Sedano profile photo"
               className="rounded-full bg-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300"
               unoptimized
               width={200}

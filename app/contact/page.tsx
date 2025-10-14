@@ -26,7 +26,7 @@ export default function ContactPage() {
     setSubmitStatus("idle");
 
     try {
-      const mailtoLink = `mailto:iromero.py@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+      const mailtoLink = `mailto:rogonzalezse@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
       window.location.href = mailtoLink;
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -83,7 +83,7 @@ export default function ContactPage() {
               href={socialLinks.email}
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
-              iromero.py@gmail.com
+              rogonzalezse@gmail.com
             </a>
           </div>
 

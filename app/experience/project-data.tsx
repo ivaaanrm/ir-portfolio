@@ -18,7 +18,7 @@ export const projects: Project[] = [
     year: "Aug 2024 - May 2025",
     description:
       "MSc degree project candidate and Erasmus exchange student in the Communication Systems Department, working on mathematical models of near-field 6G communications, with a focus on redefining the boundary conditions between the near field and far field.",
-    url: "https://www.kth.se",
+    url: "https://www.kth.se/cs/cos/division-of-communication-systems-1.834507",
     tags: ["6G", "Wireless Communications", "Research", "Mathematical Modeling"],
     type: "work",
     company: "KTH Royal Institute of Technology",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     year: "Jul 2021 - Sep 2021",
     description:
       "Developed computer vision software for textile defect detection.",
-    url: "https://www.engionautomatica.com",
+    url: "https://www.engi-on.com",
     tags: ["Computer Vision", "Python", "Image Processing", "Automation"],
     type: "work",
     company: "Engi-on Automatica",
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     year: "Mar 2025 - present",
     description:
       "International cooperation project in collaboration with Shoot4Change, Foundawtion, and AUCOOP. The project’s objective is to establish a Community Network replicating the Hahatay model to provide connectivity and local services to the Namaqua Kalahari Children’s Home in rural Namibia.",
-    url: "",
+    url: "https://foundawtion.org/en/archivos/6043",
     tags: ["Community Networks", "Telecommunications", "International Cooperation", "Connectivity"],
     type: "personal",
   },
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     year: "Jan 2022 - Apr 2022",
     description:
       "Programme run by CERN, collaborating with MBA and design students from ESADE and IED to develop a socially-driven innovation project on air quality and sustainable mobility.",
-    url: "https://home.cern",
+    url: "https://www.cbi-course.com",
     tags: ["Innovation", "CERN", "Sustainability", "Interdisciplinary Project"],
     type: "personal",
   },
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     year: "Sep 2023 - Jun 2025",
     description:
       "Master’s focused on wireless communications and AI for multimedia processing.",
-    url: "https://www.upc.edu/en",
+    url: "https://matt.masters.upc.edu",
     tags: ["Wireless Communications", "AI", "Multimedia Processing"],
     type: "education",
     university: "Polytechnic University of Catalonia (UPC)",
@@ -101,11 +101,11 @@ export const projects: Project[] = [
     year: "Sep 2018 - Jan 2023",
     description:
       "Major in telecommunications systems, with a focus on signal processing, electromagnetism, and radiocommunications. Thesis: Planar antenna design and channel modeling for chip-scale communications.",
-    url: "https://www.upc.edu/en",
+    url: "https://telecos.upc.edu/en/study-programs/degrees/bachelors-degree-in-telecommunications-technologies-and-services-engineering?set_language=en",
     tags: ["Signal Processing", "Electromagnetics", "Radiocommunications", "Antenna Design"],
     type: "education",
     university: "Polytechnic University of Catalonia (UPC)",
     location: "Barcelona, Spain",
-    degree: "BSc in Telecommunications Engineering",
+    degree: "BSc in Telecommunications Technologies and Services Engineering",
   },
 ];
