@@ -5,7 +5,7 @@ import { InView } from "../components/in-view";
 
 export const metadata = {
   title: "My Adventures",
-  description: "Travel adventures and experiences by Ivan Romero",
+  description: "Travel adventures and experiences by Roger Gonzalez Sedano",
 };
 
 export default function BlogPosts() {
