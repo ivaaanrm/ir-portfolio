@@ -130,24 +130,17 @@ main.sphere-main {
 }
 
 .viewer .frame {
+  width: 100%;
   height: 100%;
-  aspect-ratio: 1;
   border-radius: var(--enlarge-radius, 32px);
   display: flex;
-}
-
-@media (max-aspect-ratio: 1/1) {
-  .viewer .frame {
-    height: auto;
-    width: 100%;
-  }
 }
 
 .viewer .scrim {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.4);
+  background: transparent;
   pointer-events: none;
   opacity: 0;
   transition: opacity 500ms ease;
@@ -174,7 +167,7 @@ main.sphere-main {
 .viewer .enlarge img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: var(--image-filter, none);
 }
 
