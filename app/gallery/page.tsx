@@ -47,10 +47,10 @@ export default function GalleryPage() {
     <main className="mx-auto max-w-6xl px-0 sm:px-0 py-0 sm:py-0">
       <NoScroll />
       <div
-        className="w-screen max-w-none relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-white dark:bg-neutral-900"
-        style={{ height: "100vh" }}
+        className="gallery-page w-screen max-w-none relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] -mt-32 -mb-0"
+        style={{ height: "100vh", ["--viewer-pad" as any]: "16px", background: "transparent" }}
       >
-        <DomeGallery images={images} grayscale={false} overlayBlurColor="#000000" />
+        <DomeGallery images={images} grayscale={false} overlayBlurColor="transparent" />
       </div>
     </main>
   );
