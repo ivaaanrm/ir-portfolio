@@ -10,6 +10,8 @@ export interface Project {
   location?: string;
   degree?: string;
   university?: string;
+  thesisUrl?: string;
+  workUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -19,6 +21,7 @@ export const projects: Project[] = [
     description:
       "MSc degree project candidate and Erasmus exchange student in the Communication Systems Department, working on mathematical models of near-field 6G communications, with a focus on redefining the boundary conditions between the near field and far field.",
     url: "https://www.kth.se/cs/cos/division-of-communication-systems-1.834507",
+    thesisUrl: "https://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-364289",
     tags: ["6G", "Wireless Communications", "Research", "Mathematical Modeling"],
     type: "work",
     company: "KTH Royal Institute of Technology",
@@ -28,8 +31,9 @@ export const projects: Project[] = [
     title: "Research Intern",
     year: "Sep 2023 - Jun 2024",
     description:
-      "Antenna design and channel characterization for Wireless Network-on-Chip (WNoC) using full-wave simulators.",
+      "Antenna design and channel characterization for Wireless Network-on-Chip using full-wave simulators.",
     url: "https://n3cat.upc.edu",
+    workUrl: "https://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-364289",
     tags: ["Antenna Design", "Wireless Networks", "Electromagnetics", "Simulation"],
     type: "work",
     company: "NaNoNetworking Center in Catalonia (N3Cat)",

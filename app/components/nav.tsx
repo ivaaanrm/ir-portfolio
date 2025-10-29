@@ -11,6 +11,7 @@ const navItems = {
   "/": { name: "About me" },
   "/experience": { name: "Experience" },
   "/blog": { name: "Blog" },
+  "/gallery": { name: "Gallery" },
   // "/photos": { name: "Photos" },
   "/contact": { name: "Contact" },
 };
@@ -89,7 +90,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative whitespace-nowrap"
                 >
                   {name}
                 </Link>
