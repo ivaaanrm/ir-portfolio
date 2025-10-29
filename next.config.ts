@@ -20,9 +20,6 @@ const nextConfig: NextConfig = {
       '.next/cache',
     ],
   },
-  experimental: {
-    outputFileTracingIncludes: {},
-  },
   async rewrites() {
     return [
       {
