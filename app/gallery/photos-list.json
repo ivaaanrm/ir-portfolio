@@ -1,5 +1,37 @@
 [
   {
+    "src": "/photos/casamance/000009 3.JPG",
+    "alt": "000009 3"
+  },
+  {
+    "src": "/photos/casamance/000022.JPG",
+    "alt": "000022"
+  },
+  {
+    "src": "/photos/casamance/000043 2.JPG",
+    "alt": "000043 2"
+  },
+  {
+    "src": "/photos/casamance/000049.JPG",
+    "alt": "000049"
+  },
+  {
+    "src": "/photos/casamance/000051.JPG",
+    "alt": "000051"
+  },
+  {
+    "src": "/photos/casamance/000052.JPG",
+    "alt": "000052"
+  },
+  {
+    "src": "/photos/casamance/avio.JPG",
+    "alt": "avio"
+  },
+  {
+    "src": "/photos/casamance/barco.JPG",
+    "alt": "barco"
+  },
+  {
     "src": "/photos/casamance/bici_vaques.jpg",
     "alt": "bici_vaques"
   },
@@ -12,8 +44,36 @@
     "alt": "bus"
   },
   {
+    "src": "/photos/casamance/cap_skirring_beach.JPG",
+    "alt": "cap_skirring_beach"
+  },
+  {
+    "src": "/photos/casamance/cap_skirring.JPG",
+    "alt": "cap_skirring"
+  },
+  {
+    "src": "/photos/casamance/classicu 2025-02-15 221937.754 2.JPG",
+    "alt": "classicu 2025-02-15 221937.754 2"
+  },
+  {
+    "src": "/photos/casamance/esmorzar.JPG",
+    "alt": "esmorzar"
+  },
+  {
+    "src": "/photos/casamance/futbol_seleki.JPG",
+    "alt": "futbol_seleki"
+  },
+  {
+    "src": "/photos/casamance/mar_cap.jpg",
+    "alt": "mar_cap"
+  },
+  {
     "src": "/photos/casamance/portada_cassamance.jpg",
     "alt": "portada_cassamance"
+  },
+  {
+    "src": "/photos/casamance/sunset_seleki.JPG",
+    "alt": "sunset_seleki"
   },
   {
     "src": "/photos/lofoten/haukland.JPG",
@@ -72,10 +132,6 @@
     "alt": "000047"
   },
   {
-    "src": "/photos/oman/000081900029.jpg",
-    "alt": "000081900029"
-  },
-  {
     "src": "/photos/oman/alhajar.JPG",
     "alt": "alhajar"
   },
@@ -96,12 +152,12 @@
     "alt": "ferry"
   },
   {
-    "src": "/photos/oman/fire_wahiba.JPG",
-    "alt": "fire_wahiba"
+    "src": "/photos/oman/fire_jebel_shams.JPG",
+    "alt": "fire_jebel_shams"
   },
   {
-    "src": "/photos/oman/IMG_5098.JPG",
-    "alt": "IMG_5098"
+    "src": "/photos/oman/fire_wahiba.JPG",
+    "alt": "fire_wahiba"
   },
   {
     "src": "/photos/oman/masirah.JPG",
@@ -118,6 +174,10 @@
   {
     "src": "/photos/oman/puncture.JPG",
     "alt": "puncture"
+  },
+  {
+    "src": "/photos/oman/souq.jpg",
+    "alt": "souq"
   },
   {
     "src": "/photos/oman/sunrise_sugar.JPG",
