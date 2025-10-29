@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       'node_modules/typescript',
       '.git',
       '.next/cache',
+      'public/photos/**',
     ],
   },
   async rewrites() {
