@@ -503,10 +503,36 @@ export default function DomeGallery({
         const natH = img.naturalHeight || 0;
         if (!natW || !natH) return;
 
+        const isVertical = natH > natW;
         const maxW = frameR.width;
         const maxH = frameR.height;
-        // Allow upscaling up to the viewer frame bounds
-        const scale = Math.min(maxW / natW, maxH / natH);
+        const isMobile = window.innerWidth <= 768;
+        
+        // Adjust scaling based on orientation and device type
+        let scale;
+        if (isMobile) {
+          // Mobile optimizations - make photos much bigger
+          if (isVertical) {
+            // Vertical photos on mobile: use significantly more height
+            const targetHeight = maxH * 1.8; // Use 180% of available height
+            scale = Math.min(maxW * 0.98 / natW, targetHeight / natH);
+          } else {
+            // Horizontal photos on mobile: maximize width significantly
+            const targetWidth = maxW * 1.5; // Use 150% of available width
+            scale = Math.min(targetWidth / natW, maxH * 1.2 / natH);
+          }
+        } else {
+          // Desktop scaling - keep original sizing
+          if (isVertical) {
+            // For vertical photos, prioritize height and allow them to use more space
+            const targetHeight = maxH * 1.1; // Use 110% of available height for vertical photos
+            scale = Math.min(maxW / natW, targetHeight / natH);
+          } else {
+            // For horizontal photos, use standard scaling
+            scale = Math.min(maxW / natW, maxH / natH);
+          }
+        }
+        
         const finalW = Math.round(natW * scale);
         const finalH = Math.round(natH * scale);
         const centeredLeft = frameR.left - mainR.left + (frameR.width - finalW) / 2;

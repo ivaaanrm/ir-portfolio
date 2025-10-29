@@ -12,6 +12,7 @@ export interface Project {
   university?: string;
   thesisUrl?: string;
   workUrl?: string;
+  project?: string; // For personal projects
 }
 
 export const projects: Project[] = [
@@ -33,7 +34,7 @@ export const projects: Project[] = [
     description:
       "Antenna design and channel characterization for Wireless Network-on-Chip using full-wave simulators.",
     url: "https://n3cat.upc.edu",
-    workUrl: "https://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-364289",
+    workUrl: "https://cloud.rogsbox.com/index.php/s/S52Pjar5azx9LyQ",
     tags: ["Antenna Design", "Wireless Networks", "Electromagnetics", "Simulation"],
     type: "work",
     company: "NaNoNetworking Center in Catalonia (N3Cat)",
@@ -65,19 +66,23 @@ export const projects: Project[] = [
     title: "Namaqua Community Network",
     year: "Mar 2025 - present",
     description:
-      "International cooperation project in collaboration with Shoot4Change, Foundawtion, and AUCOOP. The project’s objective is to establish a Community Network replicating the Hahatay model to provide connectivity and local services to the Namaqua Kalahari Children’s Home in rural Namibia.",
+      "International cooperation project in collaboration with Shoot4Change, Foundawtion, and AUCOOP. The project's objective is to establish a Community Network replicating the Hahatay model to provide connectivity and local services to the Namaqua Kalahari Children's Home in rural Namibia.",
     url: "https://foundawtion.org/en/archivos/6043",
     tags: ["Community Networks", "Telecommunications", "International Cooperation", "Connectivity"],
     type: "personal",
+    project: "Shoot4Change, Foundawtion, AUCOOP",
+    location: "Gochas, Namibia",
   },
   {
     title: "Hahatay Community Network",
     year: "Mar 2022 - present",
     description:
-      "Volunteering project with Hahatay’s NGO and AUCOOP to deploy a Community Network using OpenWRT 5G routers and open-source software (OpenWisp, Zabbix, NextCloud) to connect rural communities in Gandiol, Senegal.",
+      "Volunteering project with Hahatay's NGO and AUCOOP to deploy a Community Network using OpenWRT 5G routers and open-source software (OpenWisp, Zabbix, NextCloud) to connect rural communities in Gandiol, Senegal.",
     url: "http://hahatay.network",
     tags: ["Networking", "OpenWRT", "Open Source", "5G", "Social Impact"],
     type: "personal",
+    project: "Hahatay NGO, AUCOOP",
+    location: "Gandiol, Senegal",
   },
   {
     title: "Challenge Based Innovation",
@@ -87,6 +92,8 @@ export const projects: Project[] = [
     url: "https://www.cbi-course.com",
     tags: ["Innovation", "CERN", "Sustainability", "Interdisciplinary Project"],
     type: "personal",
+    project: "CERN, ESADE, IED",
+    location: "Barcelona, Spain",
   },
   {
     title: "MSc in Advanced Telecommunications Technologies",
