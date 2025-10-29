@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "A 3D dome-style photo gallery.",
 };
 
+// Ensure the gallery reflects new files dropped into public/photos without a rebuild
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function getAllPhotos(): { src: string; alt: string }[] {
   const photosDir = path.join(process.cwd(), "public", "photos");
   const allowed = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".JPG", ".JPEG", ".PNG", ".WEBP", ".GIF"]);
