@@ -491,40 +491,46 @@ export default function DomeGallery({
       rootRef.current?.setAttribute("data-enlarging", "true");
     }, 16);
 
-    const wantsResize = openedImageWidth || openedImageHeight;
-    if (wantsResize) {
-      const onFirstEnd = (ev: TransitionEvent) => {
-        if (ev.propertyName !== "transform") return;
-        overlay.removeEventListener("transitionend", onFirstEnd);
-        const prevTransition = overlay.style.transition;
-        overlay.style.transition = "none";
-        const tempWidth = openedImageWidth || `${frameR.width}px`;
-        const tempHeight = openedImageHeight || `${frameR.height}px`;
-        overlay.style.width = tempWidth;
-        overlay.style.height = tempHeight;
-        const newRect = overlay.getBoundingClientRect();
-        overlay.style.width = frameR.width + "px";
-        overlay.style.height = frameR.height + "px";
-        void overlay.offsetWidth;
+    // After the initial opening animation, resize to the image's natural size
+    // (up to the viewer frame bounds) to show full resolution without cropping.
+    const onFirstEnd = (ev: TransitionEvent) => {
+      if (ev.propertyName !== "transform") return;
+      overlay.removeEventListener("transitionend", onFirstEnd);
+
+      const prevTransition = overlay.style.transition;
+      const doResize = () => {
+        const natW = img.naturalWidth || 0;
+        const natH = img.naturalHeight || 0;
+        if (!natW || !natH) return;
+
+        const maxW = frameR.width;
+        const maxH = frameR.height;
+        // Allow upscaling up to the viewer frame bounds
+        const scale = Math.min(maxW / natW, maxH / natH);
+        const finalW = Math.round(natW * scale);
+        const finalH = Math.round(natH * scale);
+        const centeredLeft = frameR.left - mainR.left + (frameR.width - finalW) / 2;
+        const centeredTop = frameR.top - mainR.top + (frameR.height - finalH) / 2;
+
         overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
-        const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
-        const centeredTop = frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
         requestAnimationFrame(() => {
           overlay.style.left = `${centeredLeft}px`;
           overlay.style.top = `${centeredTop}px`;
-          overlay.style.width = tempWidth;
-          overlay.style.height = tempHeight;
+          overlay.style.width = `${finalW}px`;
+          overlay.style.height = `${finalH}px`;
         });
+
         const cleanupSecond = () => {
           overlay.removeEventListener("transitionend", cleanupSecond);
           overlay.style.transition = prevTransition;
         };
-        overlay.addEventListener("transitionend", cleanupSecond, {
-          once: true,
-        });
+        overlay.addEventListener("transitionend", cleanupSecond, { once: true });
       };
-      overlay.addEventListener("transitionend", onFirstEnd);
-    }
+
+      if (img.complete) doResize();
+      else img.onload = () => doResize();
+    };
+    overlay.addEventListener("transitionend", onFirstEnd);
   };
 
   const onTileClick = useCallback(

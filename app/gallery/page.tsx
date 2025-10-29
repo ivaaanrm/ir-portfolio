@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import DomeGallery from "../components/dome-gallery";
+import NoScroll from "./no-scroll";
 import fs from "fs";
 import path from "path";
 
@@ -43,15 +44,13 @@ function getAllPhotos(): { src: string; alt: string }[] {
 export default function GalleryPage() {
   const images = getAllPhotos();
   return (
-    <main className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-16">
-      <h1 className="title text-3xl sm:text-4xl font-semibold tracking-tight mb-3 text-[#000000] dark:text-[#FFFFFF]">
-        Gallery
-      </h1>
-      <p className="text-neutral-600 dark:text-neutral-300 mb-8">
-        Interactive dome-style gallery inspired by React Bits Dome Gallery.
-      </p>
-      <div style={{ width: "100%", height: "80vh" }}>
-        <DomeGallery images={images} />
+    <main className="mx-auto max-w-6xl px-0 sm:px-0 py-0 sm:py-0">
+      <NoScroll />
+      <div
+        className="w-screen max-w-none relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-white dark:bg-neutral-900"
+        style={{ height: "100vh" }}
+      >
+        <DomeGallery images={images} grayscale={false} overlayBlurColor="#000000" />
       </div>
     </main>
   );
