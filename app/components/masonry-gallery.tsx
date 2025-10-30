@@ -177,7 +177,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
       </AnimatePresence>
 
       {/* Masonry Grid */}
-      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 lg:gap-6 space-y-3 md:space-y-4 lg:space-y-6">
         {images.map((image, index) => (
           <motion.div
             key={index}

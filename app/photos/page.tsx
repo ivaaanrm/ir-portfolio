@@ -83,7 +83,7 @@ export default function Photos() {
 
       <MasonryGallery
         images={galleryImages}
-        columns={{ default: 4, mobile: 1, tablet: 2 }}
+        columns={{ default: 4, mobile: 2, tablet: 3 }}
       />
     </section>
   );
