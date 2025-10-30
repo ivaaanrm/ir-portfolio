@@ -2,6 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Bot, Brain, Database, Monitor, Server, Settings } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
+import {
+  SiDjango,
+  SiDocker,
+  SiFastapi,
+  SiGithubactions,
+  SiHuggingface,
+  SiLinux,
+  SiMysql,
+  SiNginx,
+  SiOpencv,
+  SiPostgresql,
+  SiPytorch,
+  SiPython,
+  SiReact,
+  SiRedis,
+  SiSelenium,
+  SiTypescript,
+  SiOpenai,
+} from "react-icons/si";
 import { socialLinks } from "./lib/config";
 import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
@@ -12,6 +34,65 @@ export default function Page() {
   const workExperience = projects.filter(project => project.type === 'work');
   const personalProjects = projects.filter(project => project.type === 'personal');
   const education = projects.filter(project => project.type === 'education');
+
+  type TechIconComponent = ComponentType<{ className?: string }>;
+
+  type TechCategory = {
+    title: string;
+    icon: LucideIcon;
+    technologies: { name: string; icon: TechIconComponent }[];
+  };
+
+  const techStack: TechCategory[] = [
+    {
+      title: 'Backend',
+      icon: Server,
+      technologies: [
+        { name: 'Python', icon: SiPython },
+        { name: 'Django', icon: SiDjango },
+        { name: 'FastAPI', icon: SiFastapi },
+        { name: 'Selenium', icon: SiSelenium },
+      ],
+    },
+    {
+      title: 'Machine Learning & LLMs',
+      icon: Brain,
+      technologies: [
+        { name: 'PyTorch', icon: SiPytorch },
+        { name: 'OpenCV', icon: SiOpencv },
+        { name: 'Hugging Face', icon: SiHuggingface },
+        { name: 'OpenAI', icon: SiOpenai },
+        { name: 'Ollama', icon: Bot },
+      ],
+    },
+    {
+      title: 'Frontend',
+      icon: Monitor,
+      technologies: [
+        { name: 'React', icon: SiReact },
+        { name: 'TypeScript', icon: SiTypescript },
+      ],
+    },
+    {
+      title: 'Databases',
+      icon: Database,
+      technologies: [
+        { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'MySQL', icon: SiMysql },
+        { name: 'Redis', icon: SiRedis },
+      ],
+    },
+    {
+      title: 'CI / CD & DevOps',
+      icon: Settings,
+      technologies: [
+        { name: 'Nginx', icon: SiNginx },
+        { name: 'Docker', icon: SiDocker },
+        { name: 'GitHub Actions', icon: SiGithubactions },
+        { name: 'Linux', icon: SiLinux },
+      ],
+    },
+  ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -149,6 +230,12 @@ export default function Page() {
             Sobre mí
           </button>
           <button
+            onClick={() => scrollToSection('tech-stack')}
+            className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
+          >
+            Tech Stack
+          </button>
+          <button
             onClick={() => scrollToSection('experiencia')}
             className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
           >
@@ -214,6 +301,69 @@ export default function Page() {
           </div>
         </InView>
       </div>
+
+
+    {/* Tech Stack Section */}
+    <div id="tech-stack" className="mb-12">
+      <InView
+        variants={{
+          hidden: { opacity: 0, y: 80, filter: 'blur(4px)' },
+          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        }}
+        viewOptions={{ amount: 0.3 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-5 text-neutral-600 dark:text-neutral-400">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4h6l2 4h8l-2 8H6l-2-12z" />
+          </svg>
+          Tech Stack
+        </h2>
+      </InView>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {techStack.map((category, index) => {
+          const Icon = category.icon;
+          return (
+            <InView
+              key={category.title}
+              variants={{
+                hidden: { opacity: 0, y: 60, filter: 'blur(6px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.04 }}
+            >
+              <div className="group h-full rounded-lg border border-neutral-200 dark:border-neutral-700/80 bg-white/70 dark:bg-neutral-900/70 p-4 shadow-sm hover:shadow-md transition-transform duration-200 hover:-translate-y-0.5">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 p-1.5">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                      {category.title}
+                    </h3>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {category.technologies.map(tech => {
+                    const TechIcon = tech.icon;
+                    return (
+                      <span
+                        key={tech.name}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 border border-neutral-200/70 dark:border-neutral-700/60 text-xs font-medium"
+                      >
+                        <TechIcon className="h-3.5 w-3.5" />
+                        {tech.name}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </InView>
+          );
+        })}
+      </div>
+    </div>
 
 
       {/* Work Experience Section */}
