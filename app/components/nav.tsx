@@ -8,11 +8,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = {
-  "/": { name: "Sobre mí" },
-  "/experience": { name: "Experiencia" },
+  "/": { name: "About me" },
   "/blog": { name: "Blog" },
-  // "/photos": { name: "Photos" },
-  "/contact": { name: "Contacto" },
+  "/photos": { name: "Gallery" },
+  "/contact": { name: "Contact" },
 };
 
 export function Navbar() {
