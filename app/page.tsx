@@ -173,7 +173,12 @@ export default function Page() {
           viewOptions={{ amount: 0.3 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Sobre mí</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Sobre mí
+          </h2>
         </InView>
         <InView
           variants={{
@@ -221,7 +226,12 @@ export default function Page() {
           viewOptions={{ amount: 0.3 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Work Experience</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0h-8m8 0a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2" />
+            </svg>
+            Work Experience
+          </h2>
         </InView>
         <div className="space-y-6">
           {workExperience.map((project, index) => (
@@ -365,7 +375,12 @@ export default function Page() {
           viewOptions={{ amount: 0.3 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Personal Projects</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+            Featured Projects
+          </h2>
         </InView>
         <div className="space-y-6">
           {personalProjects.map((project, index) => (
@@ -486,7 +501,13 @@ export default function Page() {
           viewOptions={{ amount: 0.3 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Education</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+            Education
+          </h2>
         </InView>
         <div className="space-y-6">
           {education.map((project, index) => (
@@ -585,7 +606,12 @@ export default function Page() {
 
       {/* Contact Section */}
       <div id="contacto" className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">¡Contáctame!</h2>
+        <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Contáctame
+        </h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-6">
           I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to say hello, feel free to reach out!
         </p>
