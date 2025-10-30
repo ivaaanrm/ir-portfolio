@@ -1,75 +1,89 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ImageGrid } from "app/components/image-grid";
+import { MasonryGallery } from "app/components/masonry-gallery";
+import { prepareGalleryImages } from "app/lib/image-utils";
 import { Images } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Photography",
-  description: "Photography collection by Ivan Romero",
+  description: "Photography collection by Ivan Romero - A curated gallery of travel and landscape photography",
 };
+
+const galleryImages = prepareGalleryImages([
+  {
+    src: "/photos/DSC_0482.png",
+    alt: "Oman Desert Landscape",
+  },
+  {
+    src: "/photos/namib1.jpg",
+    alt: "Namib Desert Dunes",
+  },
+  {
+    src: "/photos/kyrgyz-hero.jpg",
+    alt: "Kyrgyzstan Mountain Landscape",
+  },
+  {
+    src: "/photos/oman-hero.jpg",
+    alt: "Oman Rocky Terrain",
+  },
+  {
+    src: "/photos/pamir-highway-hero.jpg",
+    alt: "Pamir Highway Adventure",
+  },
+  {
+    src: "/photos/namib-hero.jpg",
+    alt: "Namib Desert Vista",
+  },
+  {
+    src: "/photos/photo1.jpg",
+    alt: "Ancient Roman Columns",
+  },
+  {
+    src: "/photos/photo2.jpg",
+    alt: "Big Ben Clock Tower",
+  },
+  {
+    src: "/photos/photo3.jpg",
+    alt: "Sacré-Cœur Basilica",
+  },
+  {
+    src: "/photos/photo4.jpg",
+    alt: "Eiffel Tower at Dusk",
+  },
+  {
+    src: "/photos/photo5.jpg",
+    alt: "Taj Mahal Monument",
+  },
+  {
+    src: "/photos/photo6.jpg",
+    alt: "Ancient Roman Colosseum",
+  },
+  {
+    src: "/photos/formula-hero.JPG",
+    alt: "Formula Racing",
+  },
+  {
+    src: "/photos/ai4eo-hero.png",
+    alt: "AI for Earth Observation",
+  },
+]);
 
 export default function Photos() {
   return (
     <section>
-      <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
-        <Images className="h-4 w-4" />
-        Gallery
-      </h2>
-      <ImageGrid
-        columns={3}
-        images={[
-          {
-            src: "/photos/DSC_0482.png",
-            alt: "Oamn",
-          },
-          {
-            src: "/photos/namib1.jpg",
-            alt: "Namib Desert",
-            href: "",
-          },
-          {
-            src: "/photos/photo3.jpg",
-            alt: "Sacré-Cœur Basilica",
-            href: "https://unsplash.com/photos/a-view-of-the-inside-of-a-building-through-a-circular-window-Tp-3hrx88J4",
-          },
-          {
-            src: "/photos/photo4.jpg",
-            alt: "Eiffel Tower",
-            href: "https://unsplash.com/photos/the-eiffel-tower-towering-over-the-city-of-paris-OgPuPvPsHLM?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
-          },
-          {
-            src: "/photos/photo5.jpg",
-            alt: "Taj Mahal",
-            href: "https://unsplash.com/photos/taj-mahal-india-IPlPkWPJ2fo",
-          },
-          {
-            src: "/photos/photo6.jpg",
-            alt: "Colosseum",
-            href: "https://unsplash.com/photos/brown-concrete-building-under-blue-sky-during-daytime-3cyBR1rIJmA?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
-          },
-        ]}
-      />
+      <div className="mb-8">
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2 text-neutral-600 dark:text-neutral-400">
+          <Images className="h-4 w-4" />
+          Photography Gallery
+        </h2>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          A collection of travel and landscape photography from around the world
+        </p>
+      </div>
 
-      <ImageGrid
-        columns={2}
-        images={[
-          { src: "/photos/photo1.jpg", alt: "Roman columns" },
-          { src: "/photos/photo2.jpg", alt: "Big Ben" },
-          { src: "/photos/photo3.jpg", alt: "Sacré-Cœur Basilica" },
-          { src: "/photos/photo4.jpg", alt: "Eiffel Tower" },
-        ]}
-      />
-
-      <ImageGrid
-        columns={4}
-        images={[
-          { src: "/photos/photo1.jpg", alt: "Roman columns" },
-          { src: "/photos/photo2.jpg", alt: "Big Ben" },
-          { src: "/photos/photo3.jpg", alt: "Sacré-Cœur Basilica" },
-          { src: "/photos/photo4.jpg", alt: "Eiffel Tower" },
-          { src: "/photos/photo5.jpg", alt: "Taj Mahal" },
-          { src: "/photos/photo6.jpg", alt: "Colosseum" },
-        ]}
+      <MasonryGallery
+        images={galleryImages}
+        columns={{ default: 4, mobile: 2, tablet: 3 }}
       />
     </section>
   );
