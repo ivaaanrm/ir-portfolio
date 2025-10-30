@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '../../app/lib/utils';
-import { motion, Transition } from 'framer-motion';
+import { motion, Transition } from 'motion/react';
 
 export type GlowEffectProps = {
   className?: string;
@@ -40,7 +40,7 @@ export function GlowEffect({
   const BASE_TRANSITION = {
     repeat: Infinity,
     duration: duration,
-    ease: 'linear' as const,
+    ease: 'linear',
   };
 
   const animations = {
