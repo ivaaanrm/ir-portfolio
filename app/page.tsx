@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Bot, Brain, Database, Monitor, Server, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
+import ScrollProgressNav from "../components/navigation/scroll-progress-nav";
 import {
   SiDjango,
   SiDocker,
@@ -29,6 +30,22 @@ import { socialLinks } from "./lib/config";
 import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
 import { projects } from "./experience/project-data";
+
+const NAV_SECTIONS = [
+  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'tech-stack', label: 'Tech Stack' },
+  { id: 'experiencia', label: 'Experiencia' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'education', label: 'Education' },
+  { id: 'contacto', label: 'Contacto' },
+] as const;
+
+type SectionId = (typeof NAV_SECTIONS)[number]['id'];
+
+const NAV_SECTIONS_LIST: { id: SectionId; label: string }[] = NAV_SECTIONS.map(section => ({
+  id: section.id,
+  label: section.label,
+}));
 
 export default function Page() {
   // Separate work experience, personal projects and education
@@ -95,7 +112,7 @@ export default function Page() {
     },
   ];
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: SectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -103,7 +120,9 @@ export default function Page() {
   };
 
   return (
-    <section className="max-w-4xl mx-auto">
+    <div className="relative">
+      <ScrollProgressNav sections={NAV_SECTIONS_LIST} onNavigate={scrollToSection} />
+      <section className="max-w-4xl mx-auto">
       {/* Hero Section */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-12">
         {/* Profile Image */}
@@ -520,8 +539,8 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Personal Projects Section */}
-      <div id="personal-projects" className="mb-12">
+      {/* Projects Section */}
+      <div id="projects" className="mb-12">
         <InView
           variants={{
             hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
@@ -534,7 +553,7 @@ export default function Page() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
             </svg>
-            Featured Projects
+            Projects
           </h2>
         </InView>
         <div className="space-y-6">
@@ -794,5 +813,6 @@ export default function Page() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
