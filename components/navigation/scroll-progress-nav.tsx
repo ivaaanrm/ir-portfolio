@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronUp } from 'lucide-react';
 
 type ScrollSection = {
   id: string;
@@ -22,6 +23,7 @@ const ACCENT_CLASSES = {
 
 const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => {
   const [activeSection, setActiveSection] = useState<string>(() => sections[0]?.id ?? '');
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     if (!sections.length) {
@@ -65,6 +67,9 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
         setActiveSection(current => (current === closestSectionId ? current : closestSectionId));
       }
 
+      const shouldShowScrollTop = window.scrollY > window.innerHeight * 0.2;
+      setShowScrollTop(current => (current === shouldShowScrollTop ? current : shouldShowScrollTop));
+
       ticking = false;
     };
 
@@ -95,10 +100,11 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
   };
 
   return (
-    <nav
-      aria-label="Progreso de la página"
-      className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 lg:flex"
-    >
+    <>
+      <nav
+        aria-label="Progreso de la página"
+        className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 lg:flex"
+      >
       <div className="relative flex flex-col items-start">
         <span
           aria-hidden="true"
@@ -113,8 +119,8 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
                 <AnimatePresence>
                   {isActive && (
                     <motion.span
-                      key="active-highlight"
-                      layoutId="nav-active-highlight"
+                      key="active-highlight-desktop"
+                      layoutId="nav-active-highlight-desktop"
                       aria-hidden="true"
                       className={`absolute left-4 right-0 top-1/2 z-0 h-8 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.highlight}`}
                       initial={{ opacity: 0, scale: 0.92 }}
@@ -149,8 +155,8 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
                 <AnimatePresence>
                   {isActive && (
                     <motion.span
-                      key="active-dot"
-                      layoutId="nav-active-dot"
+                      key="active-dot-desktop"
+                      layoutId="nav-active-dot-desktop"
                       aria-hidden="true"
                       className={`absolute left-[3px] top-1/2 z-30 h-2.5 w-2.5 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.dot} ${ACCENT_CLASSES.halo}`}
                       initial={{ scale: 0.6, opacity: 0 }}
@@ -166,6 +172,25 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
         </ul>
       </div>
     </nav>
+
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            key="scroll-top"
+            type="button"
+            aria-label="Volver al inicio"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200/80 bg-white/80 text-neutral-700 shadow-lg backdrop-blur-lg transition-colors duration-300 hover:border-neutral-300 hover:text-neutral-900 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500/70 dark:border-neutral-800/80 dark:bg-neutral-950/70 dark:text-neutral-200 dark:hover:border-neutral-700 dark:hover:text-white lg:hidden"
+            initial={{ opacity: 0, y: 12, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.9 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+          >
+            <ChevronUp className="h-5 w-5" aria-hidden="true" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

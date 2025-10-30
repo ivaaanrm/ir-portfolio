@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Bot, Brain, Database, Monitor, Server, Settings } from "lucide-react";
+import { Bot, Brain, ChevronDown, Database, Monitor, Server, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 import ScrollProgressNav from "../components/navigation/scroll-progress-nav";
@@ -30,8 +30,7 @@ import { socialLinks } from "./lib/config";
 import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
 import { projects } from "./experience/project-data";
-import { GlowEffect } from '../components/motion-primitives/glow-effect';
-import { ArrowRight } from 'lucide-react';
+import { GlowEffect } from "../components/motion-primitives/glow-effect";
 
 const NAV_SECTIONS = [
   { id: 'sobre-mi', label: 'Sobre mí' },
@@ -222,45 +221,19 @@ export default function Page() {
               </svg>
             </a>
           </div>
+
+          {/* Mobile Scroll Hint */}
+          <div className="mt-6 flex justify-center lg:hidden">
+            <div className="flex flex-col items-center text-neutral-400 dark:text-neutral-500">
+              <span className="sr-only">Desplázate hacia abajo</span>
+              <div className="flex flex-col items-center gap-1">
+                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
+                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Quick Navigation */}
-      <InView
-        variants={{
-          hidden: { opacity: 0, y: 50, filter: 'blur(4px)' },
-          visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        }}
-        viewOptions={{ amount: 0.3 }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
-      >
-        <div className="flex justify-center flex-wrap gap-2 mb-12">
-          <button
-            onClick={() => scrollToSection('sobre-mi')}
-            className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
-          >
-            Sobre mí
-          </button>
-          <button
-            onClick={() => scrollToSection('tech-stack')}
-            className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
-          >
-            Tech Stack
-          </button>
-          <button
-            onClick={() => scrollToSection('experiencia')}
-            className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
-          >
-            Experiencia
-          </button>
-          <button
-            onClick={() => scrollToSection('contacto')}
-            className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-neutral-700 dark:text-neutral-300 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/30 dark:hover:to-purple-800/30 transition-all duration-200 shadow-sm hover:shadow-md text-xs border border-neutral-200 dark:border-neutral-700"
-          >
-            Contacto
-          </button>
-        </div>
-      </InView>
 
       {/* About Section */}
       <div id="sobre-mi" className="prose prose-neutral dark:prose-invert max-w-none mb-12">
