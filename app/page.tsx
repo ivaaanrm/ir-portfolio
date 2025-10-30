@@ -30,6 +30,8 @@ import { socialLinks } from "./lib/config";
 import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
 import { projects } from "./experience/project-data";
+import { GlowEffect } from '../components/motion-primitives/glow-effect';
+import { ArrowRight } from 'lucide-react';
 
 const NAV_SECTIONS = [
   { id: 'sobre-mi', label: 'Sobre mí' },
@@ -156,51 +158,41 @@ export default function Page() {
             </TextScramble>
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
-            <a
-              href="/cv-ivan-romero.pdf"
-              download
-              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg text-sm"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          {/* Download CV Button */}
+          <div className="flex justify-center lg:justify-start mb-6">
+            <div className='relative'>
+              <GlowEffect
+                colors={['#2563eb', '#7c3aed', '#db2777', '#f59e0b']}
+                mode='colorShift'
+                blur='soft'
+                duration={3}
+                scale={1}
+              />
+              <a
+                href="/cv-ivan-romero.pdf"
+                download
+                className='relative inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-50 outline outline-1 outline-neutral-200 dark:outline-neutral-800 hover:outline-neutral-300 dark:hover:outline-neutral-700 transition-all duration-200'
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Descargar CV
-            </a>
-            <button
-              onClick={() => scrollToSection('experiencia')}
-              className="inline-flex items-center px-4 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200 text-sm"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-              Ver mi trabajo
-            </button>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+                Download CV
+              </a>
+            </div>
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center lg:justify-start gap-4">
             <a
               href={socialLinks.linkedin}
               target="_blank"
