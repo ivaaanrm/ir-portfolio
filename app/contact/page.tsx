@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { socialLinks } from "../lib/config";
 import { InView } from "../components/in-view";
+import { Mail, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -48,6 +49,7 @@ export default function ContactPage() {
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
         <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+          <Mail className="h-4 w-4" />
           Contact
         </h2>
       </InView>
@@ -123,7 +125,8 @@ export default function ContactPage() {
         transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
       >
         <div>
-          <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-4 text-neutral-600 dark:text-neutral-400">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-4 text-neutral-600 dark:text-neutral-400">
+            <Send className="h-4 w-4" />
             Send a message
           </h2>
           <p className="text-base text-neutral-600 dark:text-neutral-400 mb-10 leading-relaxed max-w-xl">

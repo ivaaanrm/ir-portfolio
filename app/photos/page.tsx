@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { ImageGrid } from "app/components/image-grid";
+import { Images } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Photography",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 export default function Photos() {
   return (
     <section>
-      <h2 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">Gallery</h2>
+      <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+        <Images className="h-4 w-4" />
+        Gallery
+      </h2>
       <ImageGrid
         columns={3}
         images={[
