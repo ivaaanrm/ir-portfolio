@@ -248,7 +248,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="fixed inset-0 z-50 bg-white dark:bg-[#111010] touch-none"
             style={{ 
-              minHeight: '100vh',
               minHeight: '100dvh',
               height: '100%'
             }}
