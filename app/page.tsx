@@ -15,6 +15,7 @@ import {
   SiMysql,
   SiNginx,
   SiOpencv,
+  SiOllama,
   SiPostgresql,
   SiPytorch,
   SiPython,
@@ -55,14 +56,14 @@ export default function Page() {
       ],
     },
     {
-      title: 'Machine Learning & LLMs',
+      title: 'ML',
       icon: Brain,
       technologies: [
         { name: 'PyTorch', icon: SiPytorch },
         { name: 'OpenCV', icon: SiOpencv },
         { name: 'Hugging Face', icon: SiHuggingface },
         { name: 'OpenAI', icon: SiOpenai },
-        { name: 'Ollama', icon: Bot },
+        { name: 'Ollama', icon: SiOllama },
       ],
     },
     {
@@ -320,7 +321,7 @@ export default function Page() {
           Tech Stack
         </h2>
       </InView>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3">
         {techStack.map((category, index) => {
           const Icon = category.icon;
           return (
@@ -333,28 +334,32 @@ export default function Page() {
               viewOptions={{ amount: 0.2 }}
               transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.04 }}
             >
-              <div className="group h-full rounded-lg border border-neutral-200 dark:border-neutral-700/80 bg-white/70 dark:bg-neutral-900/70 p-4 shadow-sm hover:shadow-md transition-transform duration-200 hover:-translate-y-0.5">
-                <div className="flex items-center justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex items-center justify-center rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 p-1.5">
-                      <Icon className="h-4 w-4" />
-                    </div>
+              <div className="group relative h-full rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/60 p-4 shadow-sm ring-1 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-blue-500/10">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <div className="flex flex-col">
                     <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                       {category.title}
                     </h3>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {category.technologies.map(tech => {
                     const TechIcon = tech.icon;
                     return (
-                      <span
+                      <div
                         key={tech.name}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 border border-neutral-200/70 dark:border-neutral-700/60 text-xs font-medium"
+                        className="flex items-center gap-2 rounded-lg border border-neutral-200/70 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/70 px-2.5 py-1.5 transition-colors duration-200 group-hover:border-blue-500/30"
                       >
-                        <TechIcon className="h-3.5 w-3.5" />
-                        {tech.name}
-                      </span>
+                        <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white dark:bg-neutral-950 shadow-sm">
+                          <TechIcon className="h-4 w-4 text-neutral-700 dark:text-neutral-200" aria-hidden="true" />
+                        </span>
+                        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-100">
+                          {tech.name}
+                        </span>
+                      </div>
                     );
                   })}
                 </div>
