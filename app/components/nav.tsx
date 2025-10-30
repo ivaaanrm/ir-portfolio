@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = {
-  "/": { name: "About me" },
+  "/": { name: "Home" },
   "/blog": { name: "Blog" },
   "/photos": { name: "Gallery" },
   "/contact": { name: "Contact" },
