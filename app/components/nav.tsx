@@ -8,11 +8,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = {
-  "/": { name: "Sobre mí" },
-  "/experience": { name: "Experiencia" },
+  "/": { name: "Home" },
   "/blog": { name: "Blog" },
-  // "/photos": { name: "Photos" },
-  "/contact": { name: "Contacto" },
+  "/photos": { name: "Gallery" },
+  "/contact": { name: "Contact" },
 };
 
 export function Navbar() {
@@ -28,16 +27,44 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Efecto para bloquear el scroll del body cuando el menú está abierto
+  // Efecto para bloquear el scroll del body cuando el menú está abierto (compatible iOS)
   useEffect(() => {
     if (isMobileMenuOpen) {
+      const scrollY = window.scrollY;
+      // Fijamos el body para evitar scroll del fondo en móviles/iOS
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      // Restauramos el scroll y la posición previa
+      const top = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      if (top) {
+        const y = parseInt(top || "0", 10) * -1;
+        window.scrollTo(0, y);
+      }
     }
-    // Función de limpieza para reestablecer el scroll si el componente se desmonta
+    // Limpieza por si el componente se desmonta con el menú abierto
     return () => {
-      document.body.style.overflow = "unset";
+      const top = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      if (top) {
+        const y = parseInt(top || "0", 10) * -1;
+        window.scrollTo(0, y);
+      }
     };
   }, [isMobileMenuOpen]);
 

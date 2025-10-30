@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { PenSquare } from "lucide-react";
 import { formatDate, getBlogPosts } from "app/lib/posts";
 import { InView } from "../components/in-view";
 
@@ -21,7 +22,10 @@ export default function BlogPosts() {
         viewOptions={{ amount: 0.3 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <h1 className="mb-8 text-3xl font-bold text-center text-black dark:text-white">My Adventures</h1>
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+          <PenSquare className="h-4 w-4" />
+          <span className="font-bold">Blog</span>
+        </h2>
       </InView>
       <div className="space-y-6">
         {allBlogs
