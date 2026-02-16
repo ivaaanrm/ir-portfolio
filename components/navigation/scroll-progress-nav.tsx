@@ -95,6 +95,11 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
   }
 
   const handleNavigation = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
     setActiveSection(sectionId);
     onNavigate?.(sectionId);
   };
@@ -103,75 +108,74 @@ const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => 
     <>
       <nav
         aria-label="Progreso de la página"
-        className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 lg:flex"
+        className="fixed right-8 top-1/2 z-40 hidden -translate-y-1/2 lg:flex"
       >
-      <div className="relative flex flex-col items-start">
-        <span
-          aria-hidden="true"
-          className="absolute left-2 top-3 bottom-3 w-px bg-neutral-200/70 dark:bg-neutral-800/60"
-        />
-        <ul className="flex flex-col gap-5">
-          {sections.map(section => {
-            const isActive = section.id === activeSection;
+        <div className="relative flex flex-col items-start">
+          <span
+            aria-hidden="true"
+            className="absolute left-[9px] top-3 bottom-3 w-px bg-neutral-200/70 dark:bg-neutral-800/60"
+          />
+          <ul className="flex flex-col gap-5">
+            {sections.map(section => {
+              const isActive = section.id === activeSection;
 
-            return (
-              <li key={section.id} className="relative">
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.span
-                      key="active-highlight-desktop"
-                      layoutId="nav-active-highlight-desktop"
+              return (
+                <li key={section.id} className="relative">
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.span
+                        key="active-highlight-desktop"
+                        layoutId="nav-active-highlight-desktop"
+                        aria-hidden="true"
+                        className={`absolute left-4 right-0 top-1/2 z-0 h-8 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.highlight}`}
+                        initial={{ opacity: 0, scale: 0.92 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.92 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                      />
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    type="button"
+                    onClick={() => handleNavigation(section.id)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className="group relative flex items-center gap-4 pl-7 pr-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-neutral-500 transition-colors duration-300 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-500/70 dark:text-neutral-500"
+                  >
+                    <span
                       aria-hidden="true"
-                      className={`absolute left-4 right-0 top-1/2 z-0 h-8 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.highlight}`}
-                      initial={{ opacity: 0, scale: 0.92 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.92 }}
-                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      className="absolute left-[3px] top-1/2 z-10 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-neutral-300 bg-white transition-all duration-300 dark:border-neutral-700 dark:bg-neutral-950"
                     />
-                  )}
-                </AnimatePresence>
-
-                <button
-                  type="button"
-                  onClick={() => handleNavigation(section.id)}
-                  aria-current={isActive ? 'true' : undefined}
-                  className="group relative flex items-center gap-4 pl-6 pr-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-neutral-500 transition-colors duration-300 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-500/70 dark:text-neutral-500"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-0 top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full border border-neutral-300 bg-white transition-colors duration-300 dark:border-neutral-700 dark:bg-neutral-950"
-                  />
-                  <span
-                    className={`relative z-20 transition-colors duration-300 ${
-                      isActive
+                    <span
+                      className={`relative z-20 transition-colors duration-300 ${isActive
                         ? ACCENT_CLASSES.text
                         : 'group-hover:text-neutral-700 dark:group-hover:text-neutral-300'
-                    }`}
-                  >
-                    {section.label}
-                  </span>
-                </button>
+                        }`}
+                    >
+                      {section.label}
+                    </span>
+                  </button>
 
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.span
-                      key="active-dot-desktop"
-                      layoutId="nav-active-dot-desktop"
-                      aria-hidden="true"
-                      className={`absolute left-[3px] top-1/2 z-30 h-2.5 w-2.5 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.dot} ${ACCENT_CLASSES.halo}`}
-                      initial={{ scale: 0.6, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.6, opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-                    />
-                  )}
-                </AnimatePresence>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </nav>
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.span
+                        key="active-dot-desktop"
+                        layoutId="nav-active-dot-desktop"
+                        aria-hidden="true"
+                        className={`absolute left-[5px] top-1/2 z-30 h-2 w-2 -translate-y-1/2 rounded-full ${ACCENT_CLASSES.dot} ${ACCENT_CLASSES.halo}`}
+                        initial={{ scale: 0.6, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.6, opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 320, damping: 26 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </nav>
 
       <AnimatePresence>
         {showScrollTop && (
