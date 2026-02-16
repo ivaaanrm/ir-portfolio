@@ -81,7 +81,7 @@ export default function Page() {
         { name: 'PyTorch', icon: SiPytorch },
         { name: 'OpenCV', icon: SiOpencv },
         { name: 'Hugging Face', icon: SiHuggingface },
-        { name: 'OpenAI', icon: SiOpenai },
+        // { name: 'OpenAI', icon: SiOpenai },
         { name: 'Ollama', icon: SiOllama },
       ],
     },
@@ -261,21 +261,22 @@ export default function Page() {
           >
             <div>
               <p className="text-lg leading-relaxed mb-4">
-                I'm a Software Engineer with over 3 years of experience in backend
-                development, machine learning, and distributed systems. I'm passionate
-                about building end-to-end applications and enjoy working on projects in
-                tech environments.
+                I am a Software Engineer based in Barcelona with over 3 years of experience 
+                specializing in backend architecture and distributed systems. My focus is on 
+                building scalable Python solutions using Django and FastAPI, particularly for 
+                high-volume banking environments.
               </p>
               <p className="text-lg leading-relaxed mb-4">
-                I have a strong foundation in Python, Django, relational databases, and
-                production deployments. I am currently completing a Master's degree in
-                Advanced Telecommunications Technologies, specializing in Deep
-                Learning for Multimedia Processing.
+                Currently pursuing a Master’s in Advanced Telecommunications Technologies 
+                (Deep Learning), I bridge the gap between robust software engineering and AI. 
+                I have a proven track record of optimizing complex workflows—handling 100,000+ 
+                daily documents—and leading engineering teams to deliver resilient microservices.
               </p>
               <p className="text-lg leading-relaxed mb-4">
-                I'm always eager to tackle the next challenge and learn new technologies.
-                My experience spans from developing scalable backend systems to implementing
-                cutting-edge machine learning solutions.
+                I am passionate about clean code, DevOps automation, and designing systems 
+                that perform under pressure. Whether I'm re-architecting legacy systems or 
+                deploying containerized applications, I focus on efficiency, reliability, and 
+                scalability.
               </p>
               <p className="text-lg leading-relaxed">
                 Outside of technology, my hobbies include photography, traveling, and
