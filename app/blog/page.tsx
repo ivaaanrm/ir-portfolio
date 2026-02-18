@@ -22,7 +22,7 @@ export default function BlogPosts() {
         viewOptions={{ amount: 0.3 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600 dark:text-neutral-400">
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600">
           <PenSquare className="h-4 w-4" />
           <span className="font-bold">Blog</span>
         </h2>
@@ -52,7 +52,7 @@ export default function BlogPosts() {
                 className="group block transition-all duration-300 hover:scale-105"
                 href={`/blog/${post.slug}`}
               >
-                <article className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-neutral-200 dark:border-neutral-700 flex flex-col md:flex-row">
+                <article className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-neutral-200 flex flex-col md:flex-row">
                   {/* Imagen de portada */}
                   <div className="relative w-full md:w-64 h-48 md:h-auto overflow-hidden flex-shrink-0">
                     {post.metadata.image ? (
@@ -78,12 +78,12 @@ export default function BlogPosts() {
                   {/* Contenido de la tarjeta */}
                   <div className="p-4 flex-1 flex flex-col justify-between">
                     <div>
-                      <h2 className="text-xl font-semibold text-black dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h2 className="text-xl font-semibold text-black mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                         {post.metadata.title}
                       </h2>
 
                       {post.metadata.summary && (
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-4">
+                        <p className="text-sm text-neutral-600 line-clamp-3 mb-4">
                           {post.metadata.summary}
                         </p>
                       )}
@@ -95,7 +95,7 @@ export default function BlogPosts() {
                         {post.metadata.tags.split(", ").slice(0, 3).map((tag, index) => (
                           <span
                             key={index}
-                            className="text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-2 py-1 rounded"
+                            className="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded"
                           >
                             {tag}
                           </span>
@@ -117,11 +117,11 @@ export default function BlogPosts() {
           viewOptions={{ amount: 0.3 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
         >
-          <div className="mt-12 text-center py-8 px-6 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
-            <p className="text-lg font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+          <div className="mt-12 text-center py-8 px-6 bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-lg border border-neutral-200">
+            <p className="text-lg font-medium text-neutral-600 mb-2">
               ✨ More adventures incoming...
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-500">
+            <p className="text-sm text-neutral-500">
               Stay tuned for more travel stories and experiences!
             </p>
           </div>

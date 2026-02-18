@@ -164,11 +164,11 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-[#111010] pointer-events-none"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-white pointer-events-none"
           >
             <div className="flex flex-col items-center gap-4">
-              <Loader2 className="w-8 h-8 animate-spin text-neutral-600 dark:text-neutral-400" />
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <Loader2 className="w-8 h-8 animate-spin text-neutral-600" />
+              <p className="text-sm text-neutral-600">
                 Loading gallery...
               </p>
             </div>
@@ -197,7 +197,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
               {/* Aspect Ratio Container */}
               <div className="relative w-full" style={{ paddingBottom: "75%" }}>
                 {/* Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900">
+                <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 to-neutral-300">
                   {!loadedImages.has(index) && (
                     <div className="absolute inset-0 animate-pulse" />
                   )}
@@ -229,7 +229,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
                 {/* Loading shimmer effect */}
                 {!loadedImages.has(index) && (
                   <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent" />
+                    <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   </div>
                 )}
               </div>
@@ -246,7 +246,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-0 z-50 bg-white dark:bg-[#111010] touch-none"
+            className="fixed inset-0 z-50 bg-white touch-none"
             style={{ 
               minHeight: '100dvh',
               height: '100%'
@@ -259,11 +259,11 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
               onClick={() => setSelectedImage(null)}
               aria-label="Close"
             >
-              <X className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+              <X className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
             </motion.button>
 
             {/* Navigation Buttons */}
@@ -274,14 +274,14 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handlePrevious();
                   }}
                   aria-label="Previous"
                 >
-                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
                 </motion.button>
 
                 <motion.button
@@ -289,14 +289,14 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleNext();
                   }}
                   aria-label="Next"
                 >
-                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
                 </motion.button>
               </>
             )}
@@ -307,9 +307,9 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.15 }}
-              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700"
+              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-200 border border-neutral-300"
             >
-              <p className="text-xs md:text-sm text-neutral-900 dark:text-neutral-100 font-medium tabular-nums">
+              <p className="text-xs md:text-sm text-neutral-900 font-medium tabular-nums">
                 {selectedImage + 1} / {images.length}
               </p>
             </motion.div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeSwitch } from "./theme-switch";
 import { metaData } from "../lib/config";
 import { useEffect, useState } from "react";
 // Importamos los componentes necesarios de Framer Motion
@@ -96,8 +95,8 @@ export function Navbar() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 ${
-          isScrolled 
-            ? "bg-white dark:bg-neutral-900 shadow-sm" 
+          isScrolled
+            ? "bg-white shadow-sm"
             : "bg-transparent"
         }`}
         style={{
@@ -116,17 +115,15 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+                  className="transition-all hover:text-neutral-800 flex align-middle relative"
                 >
                   {name}
                 </Link>
               ))}
-              <ThemeSwitch />
             </div>
 
-            {/* Botón y Theme Switch para móvil */}
+            {/* Botón para móvil */}
             <div className="md:hidden flex items-center gap-4">
-              <ThemeSwitch />
                              <button
                  onClick={toggleMobileMenu}
                  className="p-2 rounded-lg z-50" // Elevamos el z-index para que esté por encima del menú
@@ -168,7 +165,7 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden fixed inset-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md"
+            className="md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-md"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
@@ -183,11 +180,11 @@ export function Navbar() {
                   <Link
                     href={path}
                     onClick={toggleMobileMenu} // Cierra el menú al hacer clic
-                    className="group relative text-2xl font-light tracking-wide transition-all hover:text-neutral-800 dark:hover:text-neutral-200"
+                    className="group relative text-2xl font-light tracking-wide transition-all hover:text-neutral-800"
                   >
                     <span className="relative">
                       {name}
-                      <span className="absolute -bottom-2 left-0 w-0 h-px bg-neutral-400 dark:bg-neutral-600 transition-all duration-300 group-hover:w-full"></span>
+                      <span className="absolute -bottom-2 left-0 w-0 h-px bg-neutral-400 transition-all duration-300 group-hover:w-full"></span>
                     </span>
                   </Link>
                 </motion.div>

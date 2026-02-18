@@ -167,17 +167,17 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
               delay: index * 0.03,
               ease: [0.4, 0, 0.2, 1],
             }}
-            className="relative aspect-square overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+            className="relative aspect-square overflow-hidden rounded-lg bg-neutral-200 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             onClick={() => setSelectedImage(index)}
             onMouseEnter={() => setHoveredImage(index)}
             onMouseLeave={() => setHoveredImage(null)}
           >
             {/* Placeholder with shimmer */}
             {!loadedImages.has(index) && (
-              <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-200 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800">
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-200">
                 <div className="absolute inset-0 overflow-hidden">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                     animate={{
                       x: ["-100%", "100%"],
                     }}
@@ -189,7 +189,7 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Loader2 className="w-6 h-6 animate-spin text-neutral-400 dark:text-neutral-600" />
+                  <Loader2 className="w-6 h-6 animate-spin text-neutral-400" />
                 </div>
               </div>
             )}
@@ -237,7 +237,7 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-0 z-50 bg-white dark:bg-[#111010] touch-none"
+            className="fixed inset-0 z-50 bg-white touch-none"
             style={{ 
               minHeight: '100dvh',
               height: '100%'
@@ -250,14 +250,14 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
               onClick={(e) => {
                 e.stopPropagation();
                 setSelectedImage(null);
               }}
               aria-label="Close lightbox"
             >
-              <X className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+              <X className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
             </motion.button>
 
             {/* Navigation */}
@@ -268,14 +268,14 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handlePrevious();
                   }}
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
                 </motion.button>
 
                 <motion.button
@@ -283,14 +283,14 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 active:bg-neutral-300 dark:active:bg-neutral-700 md:hover:bg-neutral-300 md:dark:hover:bg-neutral-700 transition-colors touch-manipulation"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleNext();
                   }}
                   aria-label="Next image"
                 >
-                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-900 dark:text-neutral-100" />
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-900" />
                 </motion.button>
               </>
             )}
@@ -301,13 +301,13 @@ export const OptimizedGridGallery: React.FC<OptimizedGridGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.15 }}
-              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 max-w-[90vw]"
+              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-200 border border-neutral-300 max-w-[90vw]"
             >
-              <div className="flex items-center gap-2 md:gap-4 text-neutral-900 dark:text-neutral-100">
+              <div className="flex items-center gap-2 md:gap-4 text-neutral-900">
                 <p className="text-xs md:text-sm font-medium tabular-nums">
                   {selectedImage + 1} / {images.length}
                 </p>
-                <span className="w-px h-3 md:h-4 bg-neutral-400 dark:bg-neutral-600 hidden md:block" />
+                <span className="w-px h-3 md:h-4 bg-neutral-400 hidden md:block" />
                 <p className="text-xs md:text-sm max-w-[200px] md:max-w-md truncate hidden md:block">
                   {images[selectedImage].alt}
                 </p>

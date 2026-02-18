@@ -13,7 +13,7 @@ export default function Projects() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <p className="text-neutral-600 dark:text-neutral-400">Redirecting...</p>
+      <p className="text-neutral-600">Redirecting...</p>
     </div>
   );
 }

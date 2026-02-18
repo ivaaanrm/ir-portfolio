@@ -72,11 +72,11 @@ export default function Photos() {
   return (
     <section>
       <div className="mb-8">
-        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2 text-neutral-600 dark:text-neutral-400">
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2 text-neutral-600">
           <Images className="h-4 w-4" />
           Photography Gallery
         </h2>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-neutral-600">
           A collection of travel and landscape photography from around the world
         </p>
       </div>
