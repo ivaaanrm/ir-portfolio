@@ -11,60 +11,80 @@ export const metadata: Metadata = {
 
 const galleryImages = prepareGalleryImages([
   {
-    src: "/photos/DSC_0482.png",
-    alt: "Oman Desert Landscape",
+    src: "/photos/gallery/DJI_0105.jpg",
+    alt: "Aerial Photography",
   },
   {
-    src: "/photos/namib1.jpg",
-    alt: "Namib Desert Dunes",
+    src: "/photos/gallery/DJI_0114-Mejorado-1.jpg",
+    alt: "Aerial Photography",
   },
   {
-    src: "/photos/kyrgyz-hero.jpg",
+    src: "/photos/gallery/DJI_0477-1.jpg",
+    alt: "Aerial Photography",
+  },
+  {
+    src: "/photos/gallery/DJI_0539-Editar-1.jpg",
+    alt: "Aerial Photography",
+  },
+  {
+    src: "/photos/gallery/DJI_0653-1.jpg",
+    alt: "Aerial Photography",
+  },
+  {
+    src: "/photos/gallery/DJI_0870-Editar.jpg",
+    alt: "Aerial View",
+  },
+  {
+    src: "/photos/gallery/DSC_0482.png",
+    alt: "Landscape Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_1926-Editar-1.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_1833.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_2919.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_4141-Editar-1.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_4282-Mejorado-NR-Editar.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/DSC_5381-1-2.jpg",
+    alt: "Photography",
+  },
+  {
+    src: "/photos/gallery/cambre_daze.jpg",
+    alt: "Cambre Daze",
+  },
+  {
+    src: "/photos/gallery/kyrgyz-hero.jpg",
     alt: "Kyrgyzstan Mountain Landscape",
   },
   {
-    src: "/photos/oman-hero.jpg",
-    alt: "Oman Rocky Terrain",
+    src: "/photos/gallery/namib-contact.jpg",
+    alt: "Namib Desert Contact",
   },
   {
-    src: "/photos/pamir-highway-hero.jpg",
-    alt: "Pamir Highway Adventure",
-  },
-  {
-    src: "/photos/namib-hero.jpg",
+    src: "/photos/gallery/namib-hero.jpg",
     alt: "Namib Desert Vista",
   },
   {
-    src: "/photos/photo1.jpg",
-    alt: "Ancient Roman Columns",
+    src: "/photos/gallery/namib1.jpg",
+    alt: "Namib Desert Dunes",
   },
   {
-    src: "/photos/photo2.jpg",
-    alt: "Big Ben Clock Tower",
-  },
-  {
-    src: "/photos/photo3.jpg",
-    alt: "Sacré-Cœur Basilica",
-  },
-  {
-    src: "/photos/photo4.jpg",
-    alt: "Eiffel Tower at Dusk",
-  },
-  {
-    src: "/photos/photo5.jpg",
-    alt: "Taj Mahal Monument",
-  },
-  {
-    src: "/photos/photo6.jpg",
-    alt: "Ancient Roman Colosseum",
-  },
-  {
-    src: "/photos/formula-hero.JPG",
-    alt: "Formula Racing",
-  },
-  {
-    src: "/photos/ai4eo-hero.png",
-    alt: "AI for Earth Observation",
+    src: "/photos/gallery/oman-hero.jpg",
+    alt: "Oman Rocky Terrain",
   },
 ]);
 

@@ -38,7 +38,7 @@ export const projects: Project[] = [
     year: "2025",
     description: "MSc project on applying AI to satellite imagery.",
     url: "https://github.com/ivaaanrm",
-    image: "/photos/ai4eo-hero.png",
+    image: "/photos/projects/ai4eo-hero.png",
     tags: ["AI", "Machine Learning", "Satellite Imagery", "Python"],
     type: "personal",
   },
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     description:
       "Developed computer vision systems for a Formula Student race car.",
     url: "https://bcnemotorsport.upc.edu/",
-    image: "/photos/formula-hero.JPG",
+    image: "/photos/projects/formula-hero.JPG",
     tags: ["Computer Vision", "C++", "ROS", "Python"],
     type: "personal",
   },
