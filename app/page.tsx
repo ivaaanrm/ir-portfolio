@@ -119,7 +119,7 @@ export default function Page() {
       <ScrollProgressNav sections={NAV_SECTIONS_LIST} />
       <section className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-12">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-4">
           {/* Profile Image */}
           <div className="flex-shrink-0 mx-auto lg:mx-0">
             <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
@@ -137,103 +137,110 @@ export default function Page() {
 
           {/* Hero Content */}
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="mb-6 text-center lg:text-left">
+            <h1 className="mb-3 text-center lg:text-left">
               <span className="inline-flex items-center rounded-full border border-neutral-200/70 bg-white/70 px-3 py-1 text-[10px] sm:text-xs font-semibold tracking-wider text-neutral-600 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/40">
                 Hi there! 👋
               </span>
-              <span className="mt-3 block text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-neutral-900">
+              <span className="mt-2 block text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-neutral-900">
                 I'm Ivan Romero
               </span>
-              <span className="mt-3 inline-block h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
+              <span className="mt-2 inline-block h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
             </h1>
-            <div className="text-xl text-neutral-600 mb-6">
-              <TextScramble
-                className='font-mono text-xl'
-                duration={2}
-              // characterSet='. '
-              >
-                Software Engineer & Machine Learning Enthusiast
-              </TextScramble>
-            </div>
+          </div>
+        </div>
 
-            {/* Download CV Button */}
-            <div className="flex justify-center lg:justify-start mb-6">
-              <div className='relative'>
-                <GlowEffect
-                  colors={['#2563eb', '#7c3aed', '#db2777', '#f59e0b']}
-                  mode='colorShift'
-                  blur='soft'
-                  duration={3}
-                  scale={1}
+        {/* Subtitle, Download CV, Socials & Mobile Hint */}
+        <div className="flex flex-col items-center gap-5 mb-10">
+          {/* Subtitle */}
+          <div className="text-center">
+            <TextScramble
+              className="block font-mono text-xl text-neutral-600"
+              duration={1.2}
+            >
+              Software Engineer
+            </TextScramble>
+            <TextScramble
+              className="block font-mono text-xl text-neutral-500"
+              duration={1.2}
+            >
+              & Machine Learning Enthusiast
+            </TextScramble>
+          </div>
+
+          {/* Download CV */}
+          <div className="relative">
+            <GlowEffect
+              colors={['#2563eb', '#7c3aed', '#db2777', '#f59e0b']}
+              mode='colorShift'
+              blur='soft'
+              duration={3}
+              scale={1}
+            />
+            <a
+              href="/cv-ivan-romero.pdf"
+              download
+              className='relative inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm bg-white text-neutral-900 outline outline-1 outline-neutral-200 hover:outline-neutral-300 transition-all duration-200'
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
-                <a
-                  href="/cv-ivan-romero.pdf"
-                  download
-                  className='relative inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm bg-white text-neutral-900 outline outline-1 outline-neutral-200 hover:outline-neutral-300 transition-all duration-200'
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                  Download CV
-                </a>
-              </div>
-            </div>
+              </svg>
+              Download CV
+            </a>
+          </div>
 
-            {/* Social Links */}
-            <div className="flex justify-center lg:justify-start gap-4">
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-600 hover:text-blue-600 transition-colors duration-200"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-600 hover:text-gray-900 transition-colors duration-200"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-.908-.62.069-.608.069-.608 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-              </a>
-              <a
-                href={socialLinks.email}
-                className="text-neutral-600 hover:text-red-600 transition-colors duration-200"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </a>
-            </div>
+          {/* Social Links */}
+          <div className="flex justify-center gap-4">
+            <a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-blue-600 transition-colors duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a
+              href={socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-gray-900 transition-colors duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-.908-.62.069-.608.069-.608 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a
+              href={socialLinks.email}
+              className="text-neutral-500 hover:text-red-600 transition-colors duration-200"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
+          </div>
 
-            {/* Mobile Scroll Hint */}
-            <div className="mt-6 flex justify-center lg:hidden">
-              <div className="flex flex-col items-center text-neutral-400">
-                <span className="sr-only">Desplázate hacia abajo</span>
-                <div className="flex flex-col items-center gap-1">
-                  <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
-                  <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
-                </div>
+          {/* Mobile Scroll Hint */}
+          <div className="flex justify-center lg:hidden">
+            <div className="flex flex-col items-center text-neutral-400">
+              <span className="sr-only">Desplázate hacia abajo</span>
+              <div className="flex flex-col items-center gap-1">
+                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
+                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
               </div>
             </div>
           </div>
         </div>
-
         {/* About Section */}
         <div id="sobre-mi" className="prose prose-neutral max-w-none mb-12">
           <InView
@@ -261,27 +268,14 @@ export default function Page() {
           >
             <div>
               <p className="text-lg leading-relaxed mb-4">
-                I am a Software Engineer based in Barcelona with over 3 years of experience 
-                specializing in backend architecture and distributed systems. My focus is on 
-                building scalable Python solutions using Django and FastAPI, particularly for 
-                high-volume banking environments.
-              </p>
-              <p className="text-lg leading-relaxed mb-4">
-                Currently pursuing a Master’s in Advanced Telecommunications Technologies 
-                (Deep Learning), I bridge the gap between robust software engineering and AI. 
-                I have a proven track record of optimizing complex workflows—handling 100,000+ 
-                daily documents—and leading engineering teams to deliver resilient microservices.
-              </p>
-              <p className="text-lg leading-relaxed mb-4">
-                I am passionate about clean code, DevOps automation, and designing systems 
-                that perform under pressure. Whether I'm re-architecting legacy systems or 
-                deploying containerized applications, I focus on efficiency, reliability, and 
-                scalability.
+                Software Engineer with 3 years of experience in backend systems and
+                microservices in Python. I specialize in Django, REST APIs, Docker, and
+                distributed system design—leading teams and shipping production solutions
+                for major Spanish banking clients. Currently pursuing a Master's in Deep
+                Learning, bridging robust software engineering with AI.
               </p>
               <p className="text-lg leading-relaxed">
-                Outside of technology, my hobbies include photography, traveling, and
-                mountaineering. These experiences help me bring a unique perspective
-                to problem-solving and creativity in my work.
+                Outside of technology, I enjoy photography, traveling, and mountaineering.
               </p>
             </div>
           </InView>
