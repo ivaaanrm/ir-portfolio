@@ -17,11 +17,12 @@ import {
   SiMysql,
   SiNginx,
   SiOpencv,
+  SiAmazonwebservices,
+  SiJavascript,
   SiOllama,
   SiPostgresql,
   SiPytorch,
   SiPython,
-  SiReact,
   SiRedis,
   SiSelenium,
   SiTypescript,
@@ -99,7 +100,7 @@ export default function Page() {
       title: 'Frontend',
       icon: Monitor,
       technologies: [
-        { name: 'React', icon: SiReact },
+        { name: 'JavaScript', icon: SiJavascript },
         { name: 'TypeScript', icon: SiTypescript },
       ],
     },
@@ -116,6 +117,7 @@ export default function Page() {
       title: 'DevOps',
       icon: Settings,
       technologies: [
+        { name: 'AWS', icon: SiAmazonwebservices },
         { name: 'Nginx', icon: SiNginx },
         { name: 'Docker', icon: SiDocker },
         { name: 'GitHub Actions', icon: SiGithubactions },
@@ -141,7 +143,7 @@ export default function Page() {
               <Image
                 src="/perfil.jpg"
                 alt="Ivan Romero"
-                className="rounded-full mx-auto grayscale hover:grayscale-0 transition-all duration-700"
+                className="rounded-full mx-auto transition-all duration-500 hover:shadow-lg"
                 unoptimized
                 width={110}
                 height={110}
@@ -161,7 +163,7 @@ export default function Page() {
 
           <motion.p
             variants={heroItem}
-            className="text-xs tracking-[0.25em] uppercase text-neutral-500 font-medium"
+            className="text-xs tracking-[0.25em] uppercase text-slate-500 font-medium"
           >
             Software Engineer &middot; Machine Learning
           </motion.p>
@@ -172,7 +174,7 @@ export default function Page() {
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-[#0A66C2] transition-colors duration-300"
+              className="text-[#0A66C2]/60 hover:text-[#0A66C2] transition-colors duration-300"
               aria-label="LinkedIn"
             >
               <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
@@ -183,7 +185,7 @@ export default function Page() {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-neutral-800 transition-colors duration-300"
+              className="text-neutral-500 hover:text-neutral-800 transition-colors duration-300"
               aria-label="GitHub"
             >
               <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
@@ -192,7 +194,7 @@ export default function Page() {
             </a>
             <a
               href={socialLinks.email}
-              className="text-neutral-400 hover:text-rose-500 transition-colors duration-300"
+              className="text-rose-400/60 hover:text-rose-500 transition-colors duration-300"
               aria-label="Email"
             >
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,7 +208,7 @@ export default function Page() {
             <a
               href="/cv-ivan-romero.pdf"
               download
-              className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-slate-700 transition-colors duration-300 border-b border-neutral-300 hover:border-slate-400 pb-0.5"
+              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-colors duration-300 border-b border-slate-300 hover:border-slate-400 pb-0.5"
             >
               Download CV
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,8 +218,8 @@ export default function Page() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 flex flex-col items-center gap-3">
+        {/* Scroll Indicator — hidden on mobile to avoid overlap */}
+        <div className="absolute bottom-8 hidden sm:flex flex-col items-center gap-3">
           <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-300 select-none">
             Scroll
           </span>
@@ -235,7 +237,7 @@ export default function Page() {
         {/* ── About ── */}
         <div id="sobre-mi" className="mb-24">
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8">
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-8">
               About
             </h2>
           </InView>
@@ -258,7 +260,7 @@ export default function Page() {
         {/* ── Tech Stack ── */}
         <div id="tech-stack" className="mb-24">
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8">
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-8">
               Tech Stack
             </h2>
           </InView>
@@ -296,7 +298,7 @@ export default function Page() {
         {/* ── Work Experience ── */}
         <div id="experiencia" className="mb-24">
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-10">
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-10">
               Experience
             </h2>
           </InView>
@@ -378,7 +380,7 @@ export default function Page() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-neutral-400 hover:text-slate-700 transition-colors duration-200"
+                      className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-700 transition-colors duration-200"
                     >
                       Visit Company
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,14 +398,14 @@ export default function Page() {
         <div id="projects" className="mb-24">
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
             <div className="flex items-baseline justify-between mb-8">
-              <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400">
+              <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400">
                 Projects
               </h2>
               <a
                 href="https://romerolabs.es"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-neutral-400 hover:text-slate-700 transition-colors duration-200"
+                className="text-xs text-slate-500 hover:text-slate-700 transition-colors duration-200"
               >
                 More projects &rarr;
               </a>
@@ -468,7 +470,7 @@ export default function Page() {
         {/* ── Education ── */}
         <div id="education" className="mb-24">
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
-            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-10">
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-emerald-600/50 mb-10">
               Education
             </h2>
           </InView>
@@ -524,7 +526,7 @@ export default function Page() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-neutral-400 hover:text-emerald-700 transition-colors duration-200"
+                      className="inline-flex items-center gap-1 text-xs text-emerald-700/50 hover:text-emerald-700 transition-colors duration-200"
                     >
                       Visit University
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -543,7 +545,7 @@ export default function Page() {
           <InView variants={fadeUp} transition={{ duration: 0.5 }}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-2">
+                <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-2">
                   Get in touch
                 </h2>
                 <p className="text-sm text-neutral-500">
