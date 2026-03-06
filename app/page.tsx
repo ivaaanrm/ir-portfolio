@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Bot, Brain, ChevronDown, Database, Monitor, Server, Settings } from "lucide-react";
+import { Brain, Database, Monitor, Server, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
+import { motion } from "framer-motion";
 import ScrollProgressNav from "../components/navigation/scroll-progress-nav";
-import { BorderTrail } from '../components/motion-primitives/border-trail';
 import {
   SiDjango,
   SiDocker,
@@ -17,26 +17,24 @@ import {
   SiMysql,
   SiNginx,
   SiOpencv,
+  SiAmazonwebservices,
+  SiJavascript,
   SiOllama,
   SiPostgresql,
   SiPytorch,
   SiPython,
-  SiReact,
   SiRedis,
   SiSelenium,
   SiTypescript,
-  SiOpenai,
 } from "react-icons/si";
 import { socialLinks } from "./lib/config";
-import { TextScramble } from "../components/motion-primitives/text-scramble";
 import { InView } from "./components/in-view";
 import { projects } from "./experience/project-data";
-import { GlowEffect } from "../components/motion-primitives/glow-effect";
 
 const NAV_SECTIONS = [
-  { id: 'sobre-mi', label: 'About Me' },
-  { id: 'tech-stack', label: 'Tech Stack' },
-  { id: 'experiencia', label: 'Work Experience' },
+  { id: 'sobre-mi', label: 'About' },
+  { id: 'tech-stack', label: 'Stack' },
+  { id: 'experiencia', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'education', label: 'Education' },
   { id: 'contacto', label: 'Contact' },
@@ -49,11 +47,25 @@ const NAV_SECTIONS_LIST: { id: SectionId; label: string }[] = NAV_SECTIONS.map(s
   label: section.label,
 }));
 
+const heroContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Page() {
-  // Separate work experience, personal projects and education
-  const workExperience = projects.filter(project => project.type === 'work');
-  const personalProjects = projects.filter(project => project.type === 'personal');
-  const education = projects.filter(project => project.type === 'education');
+  const workExperience = projects.filter(p => p.type === 'work');
+  const personalProjects = projects.filter(p => p.type === 'personal');
+  const education = projects.filter(p => p.type === 'education');
 
   type TechIconComponent = ComponentType<{ className?: string }>;
 
@@ -81,7 +93,6 @@ export default function Page() {
         { name: 'PyTorch', icon: SiPytorch },
         { name: 'OpenCV', icon: SiOpencv },
         { name: 'Hugging Face', icon: SiHuggingface },
-        // { name: 'OpenAI', icon: SiOpenai },
         { name: 'Ollama', icon: SiOllama },
       ],
     },
@@ -89,7 +100,7 @@ export default function Page() {
       title: 'Frontend',
       icon: Monitor,
       technologies: [
-        { name: 'React', icon: SiReact },
+        { name: 'JavaScript', icon: SiJavascript },
         { name: 'TypeScript', icon: SiTypescript },
       ],
     },
@@ -103,9 +114,10 @@ export default function Page() {
       ],
     },
     {
-      title: 'CI / CD & DevOps',
+      title: 'DevOps',
       icon: Settings,
       technologies: [
+        { name: 'AWS', icon: SiAmazonwebservices },
         { name: 'Nginx', icon: SiNginx },
         { name: 'Docker', icon: SiDocker },
         { name: 'GitHub Actions', icon: SiGithubactions },
@@ -117,96 +129,55 @@ export default function Page() {
   return (
     <div className="relative">
       <ScrollProgressNav sections={NAV_SECTIONS_LIST} />
-      <section className="max-w-4xl mx-auto">
-        {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-4">
-          {/* Profile Image */}
-          <div className="flex-shrink-0 mx-auto lg:mx-0">
+
+      {/* ───── Hero ───── */}
+      <motion.section
+        className="min-h-[85dvh] flex flex-col items-center justify-center relative -mt-32 pt-32"
+        variants={heroContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="text-center">
+          <motion.div variants={heroItem}>
             <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
               <Image
                 src="/perfil.jpg"
-                alt="Ivan Romero profile photo"
-                className="rounded-full bg-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                alt="Ivan Romero"
+                className="rounded-full mx-auto transition-all duration-500 hover:shadow-lg"
                 unoptimized
-                width={200}
-                height={200}
+                width={110}
+                height={110}
                 priority
               />
             </a>
-          </div>
+          </motion.div>
 
-          {/* Hero Content */}
-          <div className="flex-1 text-center lg:text-left">
-            <h1 className="mb-3 text-center lg:text-left">
-              <span className="inline-flex items-center rounded-full border border-neutral-200/70 bg-white/70 px-3 py-1 text-[10px] sm:text-xs font-semibold tracking-wider text-neutral-600 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/40">
-                Hi there! 👋
-              </span>
-              <span className="mt-2 block text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-neutral-900">
-                I'm Ivan Romero
-              </span>
-              <span className="mt-2 inline-block h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
-            </h1>
-          </div>
-        </div>
+          <motion.h1
+            variants={heroItem}
+            className="font-serif-display italic text-5xl sm:text-6xl md:text-7xl mt-8 text-neutral-900 leading-none"
+          >
+            Ivan Romero
+          </motion.h1>
 
-        {/* Subtitle, Download CV, Socials & Mobile Hint */}
-        <div className="flex flex-col items-center gap-5 mb-10">
-          {/* Subtitle */}
-          <div className="text-center">
-            <TextScramble
-              className="block font-mono text-xl text-neutral-600"
-              duration={1.2}
-            >
-              Software Engineer
-            </TextScramble>
-            <TextScramble
-              className="block font-mono text-xl text-neutral-500"
-              duration={1.2}
-            >
-              & Machine Learning Enthusiast
-            </TextScramble>
-          </div>
+          <motion.div variants={heroItem} className="w-12 h-px bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto my-6" />
 
-          {/* Download CV */}
-          <div className="relative">
-            <GlowEffect
-              colors={['#2563eb', '#7c3aed', '#db2777', '#f59e0b']}
-              mode='colorShift'
-              blur='soft'
-              duration={3}
-              scale={1}
-            />
-            <a
-              href="/cv-ivan-romero.pdf"
-              download
-              className='relative inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm bg-white text-neutral-900 outline outline-1 outline-neutral-200 hover:outline-neutral-300 transition-all duration-200'
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Download CV
-            </a>
-          </div>
+          <motion.p
+            variants={heroItem}
+            className="text-xs tracking-[0.25em] uppercase text-slate-500 font-medium"
+          >
+            Software Engineer &middot; Machine Learning
+          </motion.p>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-4">
+          <motion.div variants={heroItem} className="mt-8 flex items-center justify-center gap-5">
             <a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-blue-600 transition-colors duration-200"
+              className="text-[#0A66C2]/60 hover:text-[#0A66C2] transition-colors duration-300"
+              aria-label="LinkedIn"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
@@ -214,569 +185,386 @@ export default function Page() {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-gray-900 transition-colors duration-200"
+              className="text-neutral-500 hover:text-neutral-800 transition-colors duration-300"
+              aria-label="GitHub"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-.908-.62.069-.608.069-.608 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
             </a>
             <a
               href={socialLinks.email}
-              className="text-neutral-500 hover:text-red-600 transition-colors duration-200"
+              className="text-rose-400/60 hover:text-rose-500 transition-colors duration-300"
+              aria-label="Email"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </a>
-          </div>
+          </motion.div>
 
-          {/* Mobile Scroll Hint */}
-          <div className="flex justify-center lg:hidden">
-            <div className="flex flex-col items-center text-neutral-400">
-              <span className="sr-only">Desplázate hacia abajo</span>
-              <div className="flex flex-col items-center gap-1">
-                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
-                <ChevronDown className="h-4 w-4 animate-[bounce_1.5s_infinite]" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* About Section */}
-        <div id="sobre-mi" className="prose prose-neutral max-w-none mb-12">
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.3 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          {/* CV Download */}
+          <motion.div variants={heroItem} className="mt-6">
+            <a
+              href="/cv-ivan-romero.pdf"
+              download="cv-ivan-romero.pdf"
+              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-colors duration-300 border-b border-slate-300 hover:border-slate-400 pb-0.5"
+            >
+              Download CV
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              About me
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator — hidden on mobile to avoid overlap */}
+        <div className="absolute bottom-8 hidden sm:flex flex-col items-center gap-3">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-300 select-none">
+            Scroll
+          </span>
+          <motion.div
+            className="w-px h-8 bg-slate-300 origin-top"
+            animate={{ scaleY: [0, 1, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+      </motion.section>
+
+      {/* ───── Content ───── */}
+      <section className="max-w-4xl mx-auto">
+
+        {/* ── About ── */}
+        <div id="sobre-mi" className="mb-24">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-8">
+              About
             </h2>
           </InView>
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.2 }}
-            transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.1 }}
-          >
-            <div>
-              <p className="text-lg leading-relaxed mb-4">
+          <InView variants={fadeUp} transition={{ duration: 0.5, delay: 0.1 }}>
+            <div className="space-y-4 text-neutral-600 text-[15px] leading-relaxed">
+              <p>
                 Software Engineer with 3 years of experience in backend systems and
                 microservices in Python. I specialize in Django, REST APIs, Docker, and
-                distributed system design—leading teams and shipping production solutions
-                for major Spanish banking clients. Currently pursuing a Master's in Deep
+                distributed system design — leading teams and shipping production solutions
+                for major Spanish banking clients. Currently pursuing a Master&apos;s in Deep
                 Learning, bridging robust software engineering with AI.
               </p>
-              <p className="text-lg leading-relaxed">
+              <p>
                 Outside of technology, I enjoy photography, traveling, and mountaineering.
               </p>
             </div>
           </InView>
         </div>
 
-
-        {/* Tech Stack Section */}
-        <div id="tech-stack" className="mb-12">
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 80, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.3 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-5 text-neutral-600">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4h6l2 4h8l-2 8H6l-2-12z" />
-              </svg>
+        {/* ── Tech Stack ── */}
+        <div id="tech-stack" className="mb-24">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-8">
               Tech Stack
             </h2>
           </InView>
-          <div className="grid grid-cols-2 gap-2 sm:gap-3">
-            {techStack.map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <InView
-                  key={category.title}
-                  variants={{
-                    hidden: { opacity: 0, y: 60, filter: 'blur(6px)' },
-                    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                  }}
-                  viewOptions={{ amount: 0.2 }}
-                  transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.04 }}
-                >
-                  <div className="group relative h-full rounded-2xl border border-neutral-200/70 bg-white/95 p-4 shadow-sm ring-1 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-blue-500/10">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600">
-                        <Icon className="h-4 w-4" aria-hidden="true" />
-                      </div>
-                      <div className="flex flex-col">
-                        <h3 className="text-sm font-semibold text-neutral-900">
-                          {category.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                      {category.technologies.map(tech => {
-                        const TechIcon = tech.icon;
-                        return (
-                          <div
-                            key={tech.name}
-                            className="flex items-center gap-2 rounded-lg border border-neutral-200/70 bg-neutral-50/80 px-2.5 py-1.5 transition-colors duration-200 group-hover:border-blue-500/30"
-                          >
-                            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white shadow-sm">
-                              <TechIcon className="h-4 w-4 text-neutral-700" aria-hidden="true" />
-                            </span>
-                            <span className="text-sm font-medium text-neutral-700">
-                              {tech.name}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </InView>
-              );
-            })}
-          </div>
-        </div>
-
-
-        {/* Work Experience Section */}
-        <div id="experiencia" className="mb-12">
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.3 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0h-8m8 0a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2" />
-              </svg>
-              Work Experience
-            </h2>
-          </InView>
-          <div className="space-y-6">
-            {workExperience.map((project, index) => (
+          <div className="space-y-8">
+            {techStack.map((category, index) => (
               <InView
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                }}
-                viewOptions={{ amount: 0.2 }}
-                transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
+                key={category.title}
+                variants={fadeUp}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                <article className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200">
-                  {/* Contenido de la tarjeta */}
-                  <div className="p-6 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-2">
-                        <h2 className="text-xl font-semibold text-black">
-                          {project.title}
-                        </h2>
-                        <span className="text-sm text-neutral-500 bg-neutral-100 px-2 py-1 rounded">
-                          {project.year}
+                <div>
+                  <h3 className="text-sm font-medium text-neutral-900 mb-3">
+                    {category.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.technologies.map(tech => {
+                      const TechIcon = tech.icon;
+                      return (
+                        <span
+                          key={tech.name}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-200 text-sm text-neutral-600 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-800 transition-colors duration-200"
+                        >
+                          <TechIcon className="w-3.5 h-3.5" aria-hidden="true" />
+                          {tech.name}
                         </span>
-                      </div>
-
-                      {/* Company and Location */}
-                      {project.company && (
-                        <div className="mb-3">
-                          <p className="text-lg font-medium text-blue-600">
-                            {project.company}
-                            {project.location && (
-                              <span className="text-sm text-neutral-500 ml-2">
-                                | {project.location}
-                              </span>
-                            )}
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="text-sm text-neutral-600 mb-4">
-                        {project.description.split('\n\n').map((section, sectionIndex) => {
-                          const lines = section.split('\n');
-                          const isRoleHeader = lines[0].includes('(') && lines[0].includes(')');
-
-                          if (isRoleHeader) {
-                            const roleInfo = lines[0];
-                            const bulletPoints = lines.slice(1);
-
-                            return (
-                              <div key={sectionIndex} className="mb-4 last:mb-0">
-                                {/* Role Header with Timeline */}
-                                <div className="flex items-center mb-2">
-                                  {/* <div className="w-3 h-3 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div> */}
-                                  <div className="flex-1">
-                                    <h3 className="font-semibold text-blue-600">
-                                      {roleInfo.split(' (')[0]}
-                                    </h3>
-                                    <p className="text-xs text-neutral-500">
-                                      {roleInfo.match(/\((.*?)\)/)?.[1]}
-                                    </p>
-                                  </div>
-                                </div>
-
-                                {/* Bullet Points */}
-                                <div className="bulletPoints">
-                                  {bulletPoints.map((point, pointIndex) => (
-                                    <p key={pointIndex} className="mb-1 pl-2 border-neutral-200">
-                                      {point}
-                                    </p>
-                                  ))}
-                                </div>
-                              </div>
-                            );
-                          } else {
-                            // Regular paragraph (fallback)
-                            return (
-                              <p key={sectionIndex} className="mb-1">
-                                {section}
-                              </p>
-                            );
-                          }
-                        })}
-                      </div>
-
-                      {/* Tags */}
-                      {project.tags && (
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {project.tags.slice(0, 4).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {project.tags.length > 4 && (
-                            <span className="text-xs text-neutral-500 px-2 py-1">
-                              +{project.tags.length - 4}
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Enlace a la empresa */}
-                    <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-neutral-500 hover:text-blue-600 transition-colors"
-                    >
-                      <span>Visit Company</span>
-                      <svg
-                        className="w-4 h-4 ml-1 hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </Link>
+                      );
+                    })}
                   </div>
-                </article>
+                </div>
               </InView>
             ))}
           </div>
         </div>
 
-        {/* Projects Section */}
-        <div id="projects" className="mb-12">
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.3 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-neutral-600">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
+        {/* ── Work Experience ── */}
+        <div id="experiencia" className="mb-24">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-10">
+              Experience
+            </h2>
+          </InView>
+          <div className="relative">
+            <div className="absolute left-[5px] top-2 bottom-2 w-px bg-slate-200" aria-hidden="true" />
+            <div className="space-y-14">
+              {workExperience.map((project, index) => (
+                <InView
+                  key={index}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                >
+                  <article className="relative pl-10">
+                    <div
+                      className="absolute left-0 top-[7px] w-[11px] h-[11px] rounded-full border-2 border-slate-300 bg-[#FAFAF8]"
+                      aria-hidden="true"
+                    />
+
+                    <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 mb-1">
+                      <h3 className="text-lg font-medium text-neutral-900">
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-3">
+                      {project.company && (
+                        <span className="text-sm text-slate-600 font-medium">{project.company}</span>
+                      )}
+                      {project.location && (
+                        <span className="text-sm text-neutral-400">&middot; {project.location}</span>
+                      )}
+                      <span className="text-xs text-neutral-400 sm:ml-auto">{project.year}</span>
+                    </div>
+
+                    <div className="text-sm text-neutral-600 leading-relaxed mb-4">
+                      {project.description.split('\n\n').map((section, si) => {
+                        const lines = section.split('\n');
+                        const isRoleHeader = lines[0].includes('(') && lines[0].includes(')');
+
+                        if (isRoleHeader) {
+                          const roleInfo = lines[0];
+                          const bulletPoints = lines.slice(1);
+                          return (
+                            <div key={si} className="mb-5 last:mb-0">
+                              <p className="font-medium text-slate-700 mb-1.5">
+                                {roleInfo.split(' (')[0]}
+                                <span className="font-normal text-neutral-400 ml-2 text-xs">
+                                  {roleInfo.match(/\((.*?)\)/)?.[1]}
+                                </span>
+                              </p>
+                              <div className="space-y-1 text-neutral-500">
+                                {bulletPoints.map((point, pi) => (
+                                  <p key={pi}>{point}</p>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        }
+                        return (
+                          <p key={si} className="mb-1">{section}</p>
+                        );
+                      })}
+                    </div>
+
+                    {project.tags && (
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {project.tags.map((tag, ti) => (
+                          <span
+                            key={ti}
+                            className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-500"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-700 transition-colors duration-200"
+                    >
+                      Visit Company
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 7l-10 10M17 7h-6m6 0v6" />
+                      </svg>
+                    </a>
+                  </article>
+                </InView>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Projects ── */}
+        <div id="projects" className="mb-24">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <div className="flex items-baseline justify-between mb-8">
+              <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400">
                 Projects
               </h2>
               <a
                 href="https://romerolabs.es"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors flex items-center gap-1"
+                className="text-xs text-slate-500 hover:text-slate-700 transition-colors duration-200"
               >
-                More fun projects
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                More projects &rarr;
               </a>
             </div>
           </InView>
-          <div className="space-y-6">
+          {/* Projects divider accent */}
+          <div>
             {personalProjects.map((project, index) => (
               <InView
                 key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                }}
-                viewOptions={{ amount: 0.2 }}
-                transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
+                variants={fadeUp}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <article className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200 flex flex-col md:flex-row">
-                  {/* Imagen de portada */}
-                  <div className="relative w-full md:w-64 h-48 md:h-auto overflow-hidden flex-shrink-0">
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <div className="text-white text-4xl font-bold opacity-50">
-                          {project.title.charAt(0)}
-                        </div>
-                      </div>
-                    )}
-                    {/* Overlay con año */}
-                    <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-                      {project.year}
-                    </div>
-                    {/* GitHub icon overlay */}
-                    <div className="absolute bottom-3 left-3 bg-black bg-opacity-70 text-white p-2 rounded">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-.908-.62.069-.608.069-.608 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                          clipRule="evenodd"
+                <a href={project.url} target="_blank" rel="noopener noreferrer">
+                  <article className="group flex flex-col sm:flex-row gap-5 py-6 border-t border-neutral-200 last:border-b">
+                    <div className="relative w-full sm:w-44 h-28 sm:h-28 rounded-lg overflow-hidden flex-shrink-0 bg-neutral-100">
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Contenido de la tarjeta */}
-                  <div className="p-4 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h2 className="text-xl font-semibold text-black mb-3 line-clamp-2">
-                        {project.title}
-                      </h2>
-
-                      <p className="text-sm text-neutral-600 line-clamp-3 mb-4">
-                        {project.description}
-                      </p>
-
-                      {/* Tags */}
-                      {project.tags && (
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {project.tags.slice(0, 4).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {project.tags.length > 4 && (
-                            <span className="text-xs text-neutral-500 px-2 py-1">
-                              +{project.tags.length - 4}
-                            </span>
-                          )}
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-neutral-300 text-3xl font-light">
+                          {project.title.charAt(0)}
                         </div>
                       )}
                     </div>
-
-                    {/* Enlace a GitHub */}
-                    <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-neutral-500 hover:text-blue-600 transition-colors"
-                    >
-                      <span>View Project</span>
-                      <svg
-                        className="w-4 h-4 ml-1 hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </article>
-              </InView>
-            ))}
-          </div>
-        </div>
-
-        {/* Education Section */}
-        <div id="education" className="mb-12">
-          <InView
-            variants={{
-              hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-              visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-            }}
-            viewOptions={{ amount: 0.3 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 text-neutral-600">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              </svg>
-              Education
-            </h2>
-          </InView>
-          <div className="space-y-6">
-            {education.map((project, index) => (
-              <InView
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                }}
-                viewOptions={{ amount: 0.2 }}
-                transition={{ duration: 0.5, ease: 'easeInOut', delay: index * 0.1 }}
-              >
-                <article className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-neutral-200">
-                  {/* Contenido de la tarjeta */}
-                  <div className="p-6 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-2">
-                        <h2 className="text-xl font-semibold text-black">
+                    <div className="flex-1 flex flex-col justify-center">
+                      <div className="flex items-baseline justify-between mb-1.5">
+                        <h3 className="text-base font-medium text-neutral-900 group-hover:text-slate-600 transition-colors duration-200">
                           {project.title}
-                        </h2>
-                        <span className="text-sm text-neutral-500 bg-neutral-100 px-2 py-1 rounded">
+                        </h3>
+                        <span className="text-xs text-neutral-400 ml-4 flex-shrink-0">
                           {project.year}
                         </span>
                       </div>
-
-                      {/* University and Location */}
-                      {project.university && (
-                        <div className="mb-3">
-                          <p className="text-lg font-medium text-green-600">
-                            {project.university}
-                            {project.location && (
-                              <span className="text-sm text-neutral-500 ml-2">
-                                • {project.location}
-                              </span>
-                            )}
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="text-sm text-neutral-600 mb-4">
-                        {project.description.split('\n').map((line, lineIndex) => (
-                          <p key={lineIndex} className="mb-1 pl-2 border-l-2 border-neutral-200">
-                            {line}
-                          </p>
-                        ))}
-                      </div>
-
-                      {/* Tags */}
+                      <p className="text-sm text-neutral-500 leading-relaxed mb-3 line-clamp-2">
+                        {project.description}
+                      </p>
                       {project.tags && (
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {project.tags.slice(0, 4).map((tag, tagIndex) => (
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.tags.map((tag, ti) => (
                             <span
-                              key={tagIndex}
-                              className="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded"
+                              key={ti}
+                              className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-500"
                             >
                               {tag}
                             </span>
                           ))}
-                          {project.tags.length > 4 && (
-                            <span className="text-xs text-neutral-500 px-2 py-1">
-                              +{project.tags.length - 4}
-                            </span>
-                          )}
                         </div>
                       )}
                     </div>
-
-                    {/* Enlace a la universidad */}
-                    <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-neutral-500 hover:text-green-600 transition-colors"
-                    >
-                      <span>Visit University</span>
-                      <svg
-                        className="w-4 h-4 ml-1 hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </article>
+                  </article>
+                </a>
               </InView>
             ))}
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div id="contacto" className="relative bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 mb-8 overflow-hidden">
-          <BorderTrail
-            style={{
-              boxShadow:
-                '0px 0px 60px 30px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
-            }}
-            size={100}
-          />
-          <div className="flex items-center justify-between">
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-neutral-600">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Contact me
+        {/* ── Education ── */}
+        <div id="education" className="mb-24">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-emerald-600/50 mb-10">
+              Education
             </h2>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"
-              title="Go to Contact page"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
+          </InView>
+          <div className="relative">
+            <div className="absolute left-[5px] top-2 bottom-2 w-px bg-emerald-200/60" aria-hidden="true" />
+            <div className="space-y-14">
+              {education.map((project, index) => (
+                <InView
+                  key={index}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                >
+                  <article className="relative pl-10">
+                    <div
+                      className="absolute left-0 top-[7px] w-[11px] h-[11px] rounded-full border-2 border-emerald-400/50 bg-[#FAFAF8]"
+                      aria-hidden="true"
+                    />
+
+                    <h3 className="text-lg font-medium text-neutral-900 mb-1">
+                      {project.title}
+                    </h3>
+
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-3">
+                      {project.university && (
+                        <span className="text-sm text-emerald-800/70 font-medium">{project.university}</span>
+                      )}
+                      {project.location && (
+                        <span className="text-sm text-neutral-400">&middot; {project.location}</span>
+                      )}
+                      <span className="text-xs text-neutral-400 sm:ml-auto">{project.year}</span>
+                    </div>
+
+                    <div className="text-sm text-neutral-500 leading-relaxed mb-3 space-y-1">
+                      {project.description.split('\n').map((line, li) => (
+                        <p key={li}>{line}</p>
+                      ))}
+                    </div>
+
+                    {project.tags && (
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {project.tags.map((tag, ti) => (
+                          <span
+                            key={ti}
+                            className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-500"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-emerald-700/50 hover:text-emerald-700 transition-colors duration-200"
+                    >
+                      Visit University
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 7l-10 10M17 7h-6m6 0v6" />
+                      </svg>
+                    </a>
+                  </article>
+                </InView>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* ── Contact ── */}
+        <div id="contacto" className="mb-8 py-10 border-t border-neutral-200">
+          <InView variants={fadeUp} transition={{ duration: 0.5 }}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-slate-400 mb-2">
+                  Get in touch
+                </h2>
+                <p className="text-sm text-neutral-500">
+                  Interested in working together? Let&apos;s talk.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-white text-sm rounded-full hover:bg-slate-700 transition-colors duration-200"
+              >
+                Contact
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
+          </InView>
+        </div>
+
       </section>
     </div>
   );

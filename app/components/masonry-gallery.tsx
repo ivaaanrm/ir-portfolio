@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryImage {
   src: string;
@@ -28,7 +28,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -77,15 +76,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
       });
     };
   }, [images]);
-
-  // Handle initial loading state
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInitialLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -157,25 +147,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
 
   return (
     <>
-      {/* Loading Overlay */}
-      <AnimatePresence>
-        {isInitialLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white pointer-events-none"
-          >
-            <div className="flex flex-col items-center gap-4">
-              <Loader2 className="w-8 h-8 animate-spin text-neutral-600" />
-              <p className="text-sm text-neutral-600">
-                Loading gallery...
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Masonry Grid */}
       <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 lg:gap-6 space-y-3 md:space-y-4 lg:space-y-6">
         {images.map((image, index) => (
@@ -191,13 +162,13 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             className="relative break-inside-avoid mb-4 md:mb-6"
           >
             <div
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md md:hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
+              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm md:hover:shadow-md transition-all duration-300 active:scale-[0.98]"
               onClick={() => setSelectedImage(index)}
             >
               {/* Aspect Ratio Container */}
               <div className="relative w-full" style={{ paddingBottom: "75%" }}>
                 {/* Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 to-neutral-300">
+                <div className="absolute inset-0 bg-neutral-100">
                   {!loadedImages.has(index) && (
                     <div className="absolute inset-0 animate-pulse" />
                   )}
@@ -246,7 +217,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-0 z-50 bg-white touch-none"
+            className="fixed inset-0 z-50 bg-[#FAFAF8] touch-none"
             style={{ 
               minHeight: '100dvh',
               height: '100%'
@@ -259,7 +230,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-neutral-100 active:bg-neutral-200 md:hover:bg-neutral-200 transition-colors touch-manipulation"
               onClick={() => setSelectedImage(null)}
               aria-label="Close"
             >
@@ -274,7 +245,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-100 active:bg-neutral-200 md:hover:bg-neutral-200 transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handlePrevious();
@@ -289,7 +260,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-200 active:bg-neutral-300 md:hover:bg-neutral-300 md: transition-colors touch-manipulation"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 rounded-full bg-neutral-100 active:bg-neutral-200 md:hover:bg-neutral-200 transition-colors touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleNext();
@@ -307,7 +278,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.15 }}
-              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-200 border border-neutral-300"
+              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-neutral-100 border border-neutral-200"
             >
               <p className="text-xs md:text-sm text-neutral-900 font-medium tabular-nums">
                 {selectedImage + 1} / {images.length}

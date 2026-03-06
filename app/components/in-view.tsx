@@ -18,11 +18,11 @@ interface InViewProps {
 export function InView({
   children,
   variants = {
-    hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0 },
   },
-  transition = { duration: 0.3, ease: 'easeInOut' },
-  viewOptions = { margin: '0px 0px -200px 0px' },
+  transition = { duration: 0.4, ease: 'easeOut' },
+  viewOptions = { margin: '0px 0px -100px 0px' },
   className = "",
 }: InViewProps) {
   const ref = useRef(null);

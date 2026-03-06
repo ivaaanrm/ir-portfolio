@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { MasonryGallery } from "app/components/masonry-gallery";
 import { prepareGalleryImages } from "app/lib/image-utils";
-import { Images } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Photography",
@@ -91,13 +90,12 @@ const galleryImages = prepareGalleryImages([
 export default function Photos() {
   return (
     <section>
-      <div className="mb-8">
-        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2 text-neutral-600">
-          <Images className="h-4 w-4" />
-          Photography Gallery
+      <div className="mb-10">
+        <h2 className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-2">
+          Photography
         </h2>
-        <p className="text-sm text-neutral-600">
-          A collection of travel and landscape photography from around the world
+        <p className="text-sm text-neutral-500">
+          Travel and landscape photography from around the world
         </p>
       </div>
 
