@@ -15,10 +15,10 @@ type ScrollProgressNavProps = {
 };
 
 const ACCENT_CLASSES = {
-  text: 'text-sky-600',
-  dot: 'bg-sky-500',
-  halo: 'shadow-[0_0_0_4px_rgba(14,165,233,0.12)]',
-  highlight: 'bg-sky-500/10',
+  text: 'text-slate-700',
+  dot: 'bg-slate-600',
+  halo: 'shadow-[0_0_0_4px_rgba(71,85,105,0.1)]',
+  highlight: 'bg-slate-600/5',
 };
 
 const ScrollProgressNav = ({ sections, onNavigate }: ScrollProgressNavProps) => {
