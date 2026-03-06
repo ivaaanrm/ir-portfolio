@@ -95,7 +95,7 @@ export default function ContactPage() {
             </a>
             <a
               href="/cv-ivan-romero.pdf"
-              download
+              download="cv-ivan-romero.pdf"
               className="text-sm text-neutral-400 hover:text-neutral-900 transition-colors duration-200 underline underline-offset-4 decoration-neutral-300"
             >
               Download CV

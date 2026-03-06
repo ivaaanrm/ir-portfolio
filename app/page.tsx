@@ -207,7 +207,7 @@ export default function Page() {
           <motion.div variants={heroItem} className="mt-6">
             <a
               href="/cv-ivan-romero.pdf"
-              download
+              download="cv-ivan-romero.pdf"
               className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-colors duration-300 border-b border-slate-300 hover:border-slate-400 pb-0.5"
             >
               Download CV
