@@ -244,11 +244,7 @@ export default function Page() {
           <InView variants={fadeUp} transition={{ duration: 0.5, delay: 0.1 }}>
             <div className="space-y-4 text-neutral-600 text-[15px] leading-relaxed">
               <p>
-                Software Engineer with 3 years of experience in backend systems and
-                microservices in Python. I specialize in Django, REST APIs, Docker, and
-                distributed system design — leading teams and shipping production solutions
-                for major Spanish banking clients. Currently pursuing a Master&apos;s in Deep
-                Learning, bridging robust software engineering with AI.
+                Software Engineer with 3 years of experience building scalable backend systems, microservices, and ML pipelines in Python for banking clients (100K+ docs/day). AWS certified with hands-on cloud deployment and end-to-end ownership from architecture to production.  
               </p>
               <p>
                 Outside of technology, I enjoy photography, traveling, and mountaineering.
